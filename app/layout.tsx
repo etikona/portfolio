@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { GoogleTagManager } from "@next/third-parties/google";
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Navbar from "./Components/Shared/Navbar";
@@ -86,6 +86,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <GoogleTagManager gtmId={`${process.env.NEXT_PUBLIC_GA}`} />
+      <GoogleAnalytics gaId={`${process.env.NEXT_PUBLIC_GA}`} />
       <body>
         <Navbar />
         {children}
