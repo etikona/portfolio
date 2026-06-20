@@ -22,6 +22,9 @@ export const metadata: Metadata = {
     default: "Eti — Full-Stack Developer",
     template: "%s | Eti",
   },
+  verification: {
+    google: "bRk1lY3BWdzQKLZa2ksMlD8A2F3lMN8IKQT8xu8VKpU",
+  },
   description:
     "Full-Stack Developer specializing in Node.js, Next.js, and building scalable web applications. Based in Dhaka, Bangladesh.",
   keywords: [
@@ -91,6 +94,8 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Footer />
+
+        {/* <meta name="google-site-verification" content="bRk1lY3BWdzQKLZa2ksMlD8A2F3lMN8IKQT8xu8VKpU" /> */}
       </body>
     </html>
   );
