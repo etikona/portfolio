@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { GoogleTagManager } from "@next/third-parties/google";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Navbar from "./Components/Shared/Navbar";
@@ -16,7 +17,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://yourdomain.com"),
+  metadataBase: new URL("https://www.etikonapaul.com/"),
   title: {
     default: "Eti — Full-Stack Developer",
     template: "%s | Eti",
@@ -33,12 +34,12 @@ export const metadata: Metadata = {
     "MongoDB",
     "TypeScript",
   ],
-  authors: [{ name: "Eti", url: "https://yourdomain.com" }],
+  authors: [{ name: "Eti", url: "https://www.etikonapaul.com/" }],
   creator: "Eti",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://yourdomain.com",
+    url: "https://www.etikonapaul.com/",
     siteName: "Eti — Full-Stack Developer",
     title: "Eti — Full-Stack Developer",
     description:
@@ -84,6 +85,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <GoogleTagManager gtmId={`${process.env.NEXT_PUBLIC_GA}`} />
       <body>
         <Navbar />
         {children}

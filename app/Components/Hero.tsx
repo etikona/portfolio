@@ -286,9 +286,8 @@ export default function Hero() {
               style={{ display: "flex", gap: "0.75rem", marginLeft: "0.5rem" }}
             >
               {[
-                { href: "https://github.com/yourusername", icon: GitFork },
-                { href: "https://linkedin.com/in/yourusername", icon: Globe },
-                { href: "/resume.pdf", icon: FileText },
+                { href: "https://github.com/etikona", icon: GitFork },
+                { href: "https://linkedin.com/in/eti-kona-paul", icon: Globe },
               ].map(({ href, icon: Icon }) => (
                 <a
                   key={href}

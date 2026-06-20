@@ -5,6 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { gsap } from "gsap";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
+import logo from "../../assets/logo.png";
 
 const navLinks = [
   { href: "/#about", label: "About" },
@@ -66,15 +68,25 @@ export default function Navbar() {
         <Link
           href="/"
           style={{
-            fontFamily: "'Playfair Display', serif",
-            fontSize: "1.25rem",
-            fontWeight: 600,
-            color: "var(--fg)",
+            display: "flex",
+            alignItems: "center",
+            flexShrink: 0,
             textDecoration: "none",
-            letterSpacing: "-0.02em",
           }}
+          aria-label="Home"
         >
-          eti.
+          <Image
+            src={logo}
+            alt="Eti logo"
+            height={36}
+            style={{
+              width: "auto",
+              height: "36px",
+              objectFit: "contain",
+              display: "block",
+            }}
+            priority
+          />
         </Link>
 
         {/* Desktop Links */}

@@ -173,7 +173,7 @@ export default function Contact() {
                 {
                   icon: Mail,
                   label: "Email",
-                  value: "your@email.com",
+                  value: "etikonapaul@email.com",
                   href: "mailto:your@email.com",
                 },
                 {

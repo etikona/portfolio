@@ -2,16 +2,18 @@
 
 import Link from "next/link";
 import { GitFork, X, Mail, Globe } from "lucide-react";
+import Image from "next/image";
+import logo from "../../assets/logo.png";
 
 const socialLinks = [
-  { href: "https://github.com/yourusername", icon: GitFork, label: "GitHub" },
+  { href: "https://github.com/etikona", icon: GitFork, label: "GitHub" },
   {
-    href: "https://linkedin.com/in/yourusername",
+    href: "https://linkedin.com/in/eti-kona-paul",
     icon: Globe,
     label: "LinkedIn",
   },
-  { href: "https://x.com/yourusername", icon: X, label: "X / Twitter" },
-  { href: "mailto:your@email.com", icon: Mail, label: "Email" },
+  { href: "https://x.com/etikona", icon: X, label: "X / Twitter" },
+  { href: "mailto:etikonapaul@gmail.com", icon: Mail, label: "Email" },
 ];
 
 export default function Footer() {
@@ -47,7 +49,18 @@ export default function Footer() {
               textDecoration: "none",
             }}
           >
-            eti.
+            <Image
+              src={logo}
+              alt="Eti logo"
+              height={36}
+              style={{
+                width: "auto",
+                height: "36px",
+                objectFit: "contain",
+                display: "block",
+              }}
+              priority
+            />
           </Link>
           <p
             style={{
