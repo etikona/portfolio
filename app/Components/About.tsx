@@ -3,32 +3,50 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Code2, Server, Database, Globe } from "lucide-react";
+import { Code2, Zap, TrendingUp, Globe } from "lucide-react";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const skills = [
+const pillars = [
   {
     icon: Code2,
-    title: "Frontend",
-    items: ["Next.js", "React", "TypeScript", "TailwindCSS", "GSAP"],
+    title: "Web Development",
+    items: ["Next.js", "React", "Node.js", "REST APIs", "MongoDB"],
   },
   {
-    icon: Server,
-    title: "Backend",
-    items: ["Node.js", "Express.js", "REST API", "JWT Auth", "Nodemailer"],
+    icon: Zap,
+    title: "AI Automation",
+    items: [
+      "Workflow Automation",
+      "AI Integration",
+      "Lead Systems",
+      "Make / Zapier",
+      "Custom Bots",
+    ],
   },
   {
-    icon: Database,
-    title: "Database",
-    items: ["MongoDB Atlas", "Mongoose", "Redis", "PostgreSQL"],
+    icon: TrendingUp,
+    title: "Brand Building",
+    items: [
+      "Brand Strategy",
+      "Visual Identity",
+      "Positioning",
+      "Content Systems",
+      "LinkedIn Growth",
+    ],
   },
   {
     icon: Globe,
-    title: "DevOps",
-    items: ["Render", "Vercel", "Cloudinary", "GitHub Actions", "Docker"],
+    title: "Growth & Scale",
+    items: [
+      "SEO & GEO",
+      "Conversion Rate Opt.",
+      "Performance",
+      "Analytics",
+      "Ongoing Support",
+    ],
   },
 ];
 
@@ -75,13 +93,13 @@ export default function About() {
     <section
       ref={sectionRef}
       id="about"
-      aria-label="About"
+      aria-label="About Eti Studio"
       style={{ padding: "8rem 2rem" }}
     >
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         {/* Section label */}
         <div style={{ marginBottom: "3.5rem" }}>
-          <span className="tag">About</span>
+          <span className="tag">About the Studio</span>
         </div>
 
         {/* Two-column layout */}
@@ -95,7 +113,7 @@ export default function About() {
           }}
           className="about-cols"
         >
-          {/* Left */}
+          {/* Left — pain-point copy */}
           <div className="about-text">
             <h2
               style={{
@@ -108,11 +126,12 @@ export default function About() {
                 color: "var(--fg)",
               }}
             >
-              Building software that{" "}
+              Most businesses have a website.{" "}
               <em style={{ color: "var(--accent)", fontStyle: "italic" }}>
-                actually matters.
+                Few have a growth engine.
               </em>
             </h2>
+
             <p
               style={{
                 color: "var(--muted)",
@@ -121,26 +140,54 @@ export default function About() {
                 fontSize: "0.95rem",
               }}
             >
-              I&apos;m a full-stack developer based in Dhaka, Bangladesh, with a
-              focus on building scalable, maintainable web applications. I work
-              across the entire stack — from designing REST APIs to crafting
-              responsive interfaces.
+              Eti Studio is a founder-led digital growth agency based in Dhaka,
+              Bangladesh, working with startups and businesses worldwide. We
+              don't just build websites — we build systems that attract
+              customers, qualify leads, and convert them into revenue.
             </p>
             <p
               style={{
                 color: "var(--muted)",
                 lineHeight: 1.85,
                 fontSize: "0.95rem",
+                marginBottom: "2rem",
               }}
             >
-              My current stack revolves around Node.js and Express for backend
-              services, Next.js for server-rendered frontends, and MongoDB Atlas
-              for data persistence. I care deeply about clean code, good
-              architecture, and shipping products that work reliably.
+              Our three-pillar approach covers everything a growing business
+              needs: a high-performance web platform engineered to rank and
+              convert, AI automation workflows that eliminate manual
+              bottlenecks, and a brand strategy that positions you as the
+              obvious choice in your market.
             </p>
+
+            {/* Inline CTA — catch readers mid-scroll */}
+            <a
+              href="#contact"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.5rem",
+                padding: "0.75rem 1.5rem",
+                background: "var(--fg)",
+                color: "var(--bg)",
+                textDecoration: "none",
+                fontSize: "0.82rem",
+                fontWeight: 600,
+                letterSpacing: "0.04em",
+                textTransform: "uppercase",
+                borderRadius: "2px",
+                transition: "background 0.2s ease",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = "#333")}
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.background = "var(--fg)")
+              }
+            >
+              See if we're a fit →
+            </a>
           </div>
 
-          {/* Right — stats */}
+          {/* Right — stats with Acquisition.com-style authority signals */}
           <div className="about-text">
             <div
               style={{
@@ -150,10 +197,19 @@ export default function About() {
               }}
             >
               {[
-                { number: "2+", label: "Years of experience" },
-                { number: "15+", label: "Projects shipped" },
-                { number: "8+", label: "Happy clients" },
-                { number: "100%", label: "Remote-ready" },
+                {
+                  number: "3+",
+                  label: "Years delivering production-grade digital products",
+                },
+                {
+                  number: "15+",
+                  label: "Businesses launched, scaled, or rebuilt",
+                },
+                { number: "8+", label: "Active clients across 3 continents" },
+                {
+                  number: "1",
+                  label: "Point of contact — no handoffs, no junior work",
+                },
               ].map(({ number, label }) => (
                 <div
                   key={label}
@@ -178,9 +234,10 @@ export default function About() {
                   </div>
                   <div
                     style={{
-                      fontSize: "0.8rem",
+                      fontSize: "0.78rem",
                       color: "var(--muted)",
-                      letterSpacing: "0.02em",
+                      letterSpacing: "0.01em",
+                      lineHeight: 1.5,
                     }}
                   >
                     {label}
@@ -188,12 +245,65 @@ export default function About() {
                 </div>
               ))}
             </div>
+
+            {/* Pain points — Khalid-style honest framing */}
+            <div
+              style={{
+                marginTop: "2rem",
+                padding: "1.5rem",
+                border: "1px solid var(--border)",
+                borderLeft: "3px solid var(--accent)",
+                borderRadius: "4px",
+                background: "var(--surface)",
+              }}
+            >
+              <p
+                style={{
+                  fontSize: "0.85rem",
+                  color: "var(--muted)",
+                  lineHeight: 1.8,
+                  fontStyle: "italic",
+                }}
+              >
+                "We don't outsource. We don't disappear after launch. You work
+                directly with us — the people who built your system are the same
+                people optimising it."
+              </p>
+              <p
+                style={{
+                  fontSize: "0.8rem",
+                  color: "var(--fg)",
+                  fontWeight: 600,
+                  marginTop: "0.75rem",
+                }}
+              >
+                — Eti, Founder
+              </p>
+            </div>
           </div>
         </div>
 
         <hr className="section-rule" style={{ marginBottom: "4rem" }} />
 
-        {/* Skills grid */}
+        {/* Service pillars grid */}
+        <div style={{ marginBottom: "3rem" }}>
+          <h3
+            style={{
+              fontFamily: "'Playfair Display', serif",
+              fontSize: "1.2rem",
+              fontWeight: 600,
+              color: "var(--fg)",
+              marginBottom: "0.5rem",
+            }}
+          >
+            Everything your business needs to grow online
+          </h3>
+          <p style={{ fontSize: "0.85rem", color: "var(--muted)" }}>
+            Web development, AI automation, brand building, and growth — one
+            studio, no coordination overhead.
+          </p>
+        </div>
+
         <div
           className="skills-grid"
           style={{
@@ -202,7 +312,7 @@ export default function About() {
             gap: "1.5rem",
           }}
         >
-          {skills.map(({ icon: Icon, title, items }) => (
+          {pillars.map(({ icon: Icon, title, items }) => (
             <div
               key={title}
               className="skill-card"
@@ -270,6 +380,63 @@ export default function About() {
               </ul>
             </div>
           ))}
+        </div>
+
+        {/* Bottom CTA strip */}
+        <div
+          style={{
+            marginTop: "4rem",
+            padding: "2.5rem",
+            border: "1px solid var(--border)",
+            borderRadius: "6px",
+            background: "var(--surface)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            flexWrap: "wrap",
+            gap: "1.5rem",
+          }}
+        >
+          <div>
+            <p
+              style={{
+                fontFamily: "'Playfair Display', serif",
+                fontSize: "1.3rem",
+                fontWeight: 600,
+                color: "var(--fg)",
+                marginBottom: "0.4rem",
+              }}
+            >
+              Not sure which service you need?
+            </p>
+            <p style={{ fontSize: "0.85rem", color: "var(--muted)" }}>
+              Book a free 30-minute strategy call. We'll diagnose your biggest
+              growth bottleneck and tell you exactly what to do about it — no
+              pitch, no pressure.
+            </p>
+          </div>
+          <a
+            href="#contact"
+            style={{
+              padding: "0.85rem 2rem",
+              background: "var(--fg)",
+              color: "var(--bg)",
+              textDecoration: "none",
+              fontSize: "0.85rem",
+              fontWeight: 600,
+              letterSpacing: "0.04em",
+              textTransform: "uppercase",
+              borderRadius: "2px",
+              whiteSpace: "nowrap",
+              transition: "background 0.2s ease",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.background = "#333")}
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.background = "var(--fg)")
+            }
+          >
+            Book Free Call →
+          </a>
         </div>
       </div>
 

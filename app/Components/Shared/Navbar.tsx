@@ -4,16 +4,16 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { gsap } from "gsap";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import logo from "../../assets/logo.png";
 
 const navLinks = [
-  { href: "/#about", label: "About" },
-  { href: "/#experience", label: "Experience" },
-  { href: "/#projects", label: "Projects" },
-  { href: "/#contact", label: "Contact" },
   { href: "/blog", label: "Blog" },
+  { href: "/#about", label: "About" },
+  { href: "/#services", label: "Services" },
+  { href: "/#projects", label: "Work" },
+  { href: "/#faq", label: "FAQ" },
 ];
 
 export default function Navbar() {
@@ -77,7 +77,7 @@ export default function Navbar() {
         >
           <Image
             src={logo}
-            alt="Eti logo"
+            alt="Eti Studio logo"
             height={36}
             style={{
               width: "auto",
@@ -89,51 +89,84 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* Desktop Links */}
-        <ul
-          style={{
-            display: "flex",
-            gap: "2.5rem",
-            listStyle: "none",
-            alignItems: "center",
-          }}
+        {/* Desktop Links + CTA */}
+        <div
+          style={{ display: "flex", alignItems: "center", gap: "2.5rem" }}
           className="hidden-mobile"
         >
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                style={{
-                  fontSize: "0.85rem",
-                  fontWeight: 500,
-                  letterSpacing: "0.04em",
-                  textTransform: "uppercase",
-                  color:
-                    pathname === link.href ||
-                    (link.href === "/blog" && pathname.startsWith("/blog"))
+          <ul
+            style={{
+              display: "flex",
+              gap: "2.5rem",
+              listStyle: "none",
+              alignItems: "center",
+              margin: 0,
+              padding: 0,
+            }}
+          >
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  style={{
+                    fontSize: "0.82rem",
+                    fontWeight: 500,
+                    letterSpacing: "0.04em",
+                    textTransform: "uppercase",
+                    color:
+                      pathname === link.href ||
+                      (link.href === "/blog" && pathname.startsWith("/blog"))
+                        ? "var(--fg)"
+                        : "var(--muted)",
+                    textDecoration: "none",
+                    transition: "color 0.2s ease",
+                  }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.color = "var(--fg)")
+                  }
+                  onMouseLeave={(e) => {
+                    const active =
+                      pathname === link.href ||
+                      (link.href === "/blog" && pathname.startsWith("/blog"));
+                    e.currentTarget.style.color = active
                       ? "var(--fg)"
-                      : "var(--muted)",
-                  textDecoration: "none",
-                  transition: "color 0.2s ease",
-                  position: "relative",
-                }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.color = "var(--fg)")
-                }
-                onMouseLeave={(e) => {
-                  const active =
-                    pathname === link.href ||
-                    (link.href === "/blog" && pathname.startsWith("/blog"));
-                  e.currentTarget.style.color = active
-                    ? "var(--fg)"
-                    : "var(--muted)";
-                }}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+                      : "var(--muted)";
+                  }}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* CTA Button */}
+          <Link
+            href="/#contact"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.4rem",
+              padding: "0.55rem 1.25rem",
+              background: "var(--fg)",
+              color: "var(--bg)",
+              textDecoration: "none",
+              fontSize: "0.78rem",
+              fontWeight: 600,
+              letterSpacing: "0.05em",
+              textTransform: "uppercase",
+              borderRadius: "2px",
+              transition: "background 0.2s ease",
+              flexShrink: 0,
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.background = "#333")}
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.background = "var(--fg)")
+            }
+          >
+            Work With Us
+            <ArrowRight size={12} />
+          </Link>
+        </div>
 
         {/* Mobile Menu Button */}
         <button
@@ -159,7 +192,7 @@ export default function Navbar() {
           style={{
             background: "var(--bg)",
             borderTop: "1px solid var(--border)",
-            padding: "1.5rem 2rem",
+            padding: "1.5rem 2rem 2rem",
           }}
         >
           <ul
@@ -168,6 +201,9 @@ export default function Navbar() {
               display: "flex",
               flexDirection: "column",
               gap: "1.25rem",
+              margin: 0,
+              padding: 0,
+              marginBottom: "1.75rem",
             }}
           >
             {navLinks.map((link) => (
@@ -181,6 +217,7 @@ export default function Navbar() {
                     color: "var(--fg)",
                     textDecoration: "none",
                     letterSpacing: "0.03em",
+                    textTransform: "uppercase",
                   }}
                 >
                   {link.label}
@@ -188,6 +225,28 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
+
+          {/* Mobile CTA */}
+          <Link
+            href="/#contact"
+            onClick={() => setMenuOpen(false)}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              padding: "0.75rem 1.5rem",
+              background: "var(--fg)",
+              color: "var(--bg)",
+              textDecoration: "none",
+              fontSize: "0.82rem",
+              fontWeight: 600,
+              letterSpacing: "0.05em",
+              textTransform: "uppercase",
+              borderRadius: "2px",
+            }}
+          >
+            Work With Us <ArrowRight size={13} />
+          </Link>
         </div>
       )}
 

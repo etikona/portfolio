@@ -2,13 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-import { ArrowDown, GitFork, Globe, FileText } from "lucide-react";
+import { ArrowDown, GitFork, Globe, ArrowRight } from "lucide-react";
 
 const roles = [
-  "Full-Stack Developer",
-  "Next.js Engineer",
-  "Node.js Developer",
-  "API Architect",
+  "Digital Growth Agency",
+  "Web Development Studio",
+  "AI Automation Partner",
+  "Brand Building Experts",
 ];
 
 export default function Hero() {
@@ -19,13 +19,11 @@ export default function Hero() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [cursor, setCursor] = useState(true);
 
-  // Cursor blink
   useEffect(() => {
     const interval = setInterval(() => setCursor((c) => !c), 530);
     return () => clearInterval(interval);
   }, []);
 
-  // Typewriter effect
   useEffect(() => {
     const currentRole = roles[roleIndex];
     let timeout: NodeJS.Timeout;
@@ -48,7 +46,6 @@ export default function Hero() {
     return () => clearTimeout(timeout);
   }, [displayedRole, isDeleting, roleIndex]);
 
-  // GSAP entrance
   useEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ delay: 0.3 });
@@ -82,13 +79,18 @@ export default function Hero() {
           "-=0.3",
         )
         .fromTo(
+          ".hero-trust",
+          { opacity: 0, y: 10 },
+          { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
+          "-=0.2",
+        )
+        .fromTo(
           ".hero-scroll",
           { opacity: 0 },
           { opacity: 1, duration: 0.8, ease: "power2.out" },
           "-=0.2",
         );
 
-      // Floating terminal card
       if (terminalRef.current) {
         gsap.fromTo(
           terminalRef.current,
@@ -152,18 +154,20 @@ export default function Hero() {
       >
         {/* Left Column */}
         <div>
+          {/* Eyebrow — social proof signal */}
           <span
             className="hero-eyebrow tag"
             style={{ marginBottom: "1.5rem", display: "inline-flex" }}
           >
-            Available for work
+            Now accepting new clients for Q3 2026
           </span>
 
+          {/* H1 — SEO primary keyword in the headline */}
           <h1
             className="hero-name"
             style={{
               fontFamily: "'Playfair Display', serif",
-              fontSize: "clamp(2.8rem, 6vw, 5rem)",
+              fontSize: "clamp(2.4rem, 5vw, 4.2rem)",
               fontWeight: 600,
               lineHeight: 1.1,
               letterSpacing: "-0.03em",
@@ -171,9 +175,14 @@ export default function Hero() {
               marginBottom: "1rem",
             }}
           >
-            Hi, I&apos;m Eti.
+            We grow businesses
+            <br />
+            <em style={{ color: "var(--accent)", fontStyle: "italic" }}>
+              online.
+            </em>
           </h1>
 
+          {/* Typewriter — signals service breadth */}
           <div
             className="hero-role-line"
             style={{
@@ -186,7 +195,7 @@ export default function Hero() {
           >
             <span
               style={{
-                fontSize: "clamp(1rem, 2.5vw, 1.3rem)",
+                fontSize: "clamp(1rem, 2.5vw, 1.25rem)",
                 color: "var(--accent)",
                 fontWeight: 500,
                 fontFamily: "'Playfair Display', serif",
@@ -209,21 +218,24 @@ export default function Hero() {
             </span>
           </div>
 
+          {/* Description — pain-point focused, keyword rich */}
           <p
             className="hero-description"
             style={{
               fontSize: "1rem",
               color: "var(--muted)",
-              lineHeight: 1.8,
+              lineHeight: 1.85,
               maxWidth: "480px",
-              marginBottom: "2.5rem",
+              marginBottom: "2rem",
             }}
           >
-            I build high-performance web applications with clean architecture
-            and pixel-perfect interfaces. Focused on Node.js backends, Next.js
-            frontends, and real-world products.
+            Eti Studio is a founder-led digital growth agency. We build
+            high-performance web platforms, deploy AI automation that saves your
+            team hours every week, and craft brand strategies that attract
+            premium clients — all under one roof, without the agency bloat.
           </p>
 
+          {/* Primary CTAs */}
           <div
             className="hero-cta"
             style={{
@@ -231,12 +243,14 @@ export default function Hero() {
               gap: "1rem",
               flexWrap: "wrap",
               alignItems: "center",
+              marginBottom: "2rem",
             }}
           >
+            {/* Primary CTA — highest intent action */}
             <a
-              href="#projects"
+              href="#contact"
               style={{
-                padding: "0.75rem 1.75rem",
+                padding: "0.85rem 2rem",
                 background: "var(--fg)",
                 color: "var(--bg)",
                 textDecoration: "none",
@@ -246,18 +260,24 @@ export default function Hero() {
                 textTransform: "uppercase",
                 transition: "background 0.2s ease",
                 borderRadius: "2px",
+                display: "flex",
+                alignItems: "center",
+                gap: "0.5rem",
               }}
               onMouseEnter={(e) => (e.currentTarget.style.background = "#333")}
               onMouseLeave={(e) =>
                 (e.currentTarget.style.background = "var(--fg)")
               }
             >
-              View Projects
+              Get a Free Strategy Call
+              <ArrowRight size={14} />
             </a>
+
+            {/* Secondary CTA — proof before commitment */}
             <a
-              href="#contact"
+              href="#projects"
               style={{
-                padding: "0.75rem 1.75rem",
+                padding: "0.85rem 1.75rem",
                 border: "1px solid var(--border)",
                 background: "transparent",
                 color: "var(--fg)",
@@ -278,25 +298,72 @@ export default function Hero() {
                 e.currentTarget.style.background = "transparent";
               }}
             >
-              Get in Touch
+              See Our Work
             </a>
+          </div>
 
-            {/* Social Icons */}
-            <div
-              style={{ display: "flex", gap: "0.75rem", marginLeft: "0.5rem" }}
-            >
+          {/* Trust signals — Khalid Farhan-style micro-proof */}
+          <div
+            className="hero-trust"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "1.5rem",
+              flexWrap: "wrap",
+            }}
+          >
+            {[
+              { number: "15+", label: "Businesses grown" },
+              { number: "3+", label: "Years in production" },
+              { number: "100%", label: "Remote, worldwide" },
+            ].map(({ number, label }) => (
+              <div
+                key={label}
+                style={{
+                  display: "flex",
+                  alignItems: "baseline",
+                  gap: "0.35rem",
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: "'Playfair Display', serif",
+                    fontSize: "1.2rem",
+                    fontWeight: 600,
+                    color: "var(--fg)",
+                  }}
+                >
+                  {number}
+                </span>
+                <span style={{ fontSize: "0.75rem", color: "var(--muted)" }}>
+                  {label}
+                </span>
+              </div>
+            ))}
+
+            {/* Social icons */}
+            <div style={{ display: "flex", gap: "0.6rem", marginLeft: "auto" }}>
               {[
-                { href: "https://github.com/etikona", icon: GitFork },
-                { href: "https://linkedin.com/in/eti-kona-paul", icon: Globe },
-              ].map(({ href, icon: Icon }) => (
+                {
+                  href: "https://github.com/etikona",
+                  icon: GitFork,
+                  label: "GitHub",
+                },
+                {
+                  href: "https://linkedin.com/in/eti-kona-paul",
+                  icon: Globe,
+                  label: "LinkedIn",
+                },
+              ].map(({ href, icon: Icon, label }) => (
                 <a
                   key={href}
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={label}
                   style={{
-                    width: "38px",
-                    height: "38px",
+                    width: "36px",
+                    height: "36px",
                     border: "1px solid var(--border)",
                     display: "flex",
                     alignItems: "center",
@@ -314,7 +381,7 @@ export default function Hero() {
                     e.currentTarget.style.borderColor = "var(--border)";
                   }}
                 >
-                  <Icon size={16} />
+                  <Icon size={15} />
                 </a>
               ))}
             </div>
@@ -378,7 +445,7 @@ export default function Hero() {
                 fontFamily: "monospace",
               }}
             >
-              about-me.ts
+              eti-studio.ts
             </span>
           </div>
 
@@ -391,66 +458,77 @@ export default function Hero() {
               lineHeight: 1.9,
             }}
           >
-            <div style={{ color: "#6B7280" }}>{"// Developer info"}</div>
+            <div style={{ color: "#6B7280" }}>
+              {"// Eti Studio — Digital Growth Agency"}
+            </div>
             <div>
               <span style={{ color: "#C8B89A" }}>const</span>{" "}
-              <span style={{ color: "#E5E7EB" }}>developer</span>{" "}
+              <span style={{ color: "#E5E7EB" }}>studio</span>{" "}
               <span style={{ color: "#C8B89A" }}>=</span>{" "}
               <span style={{ color: "#9CA3AF" }}>{"{"}</span>
             </div>
             <div style={{ paddingLeft: "1.5rem" }}>
-              <span style={{ color: "#6EE7B7" }}>name</span>
-              <span style={{ color: "#9CA3AF" }}>:</span>{" "}
-              <span style={{ color: "#FCA5A5" }}>&quot;Eti&quot;</span>
-              <span style={{ color: "#9CA3AF" }}>,</span>
-            </div>
-            <div style={{ paddingLeft: "1.5rem" }}>
-              <span style={{ color: "#6EE7B7" }}>location</span>
-              <span style={{ color: "#9CA3AF" }}>:</span>{" "}
-              <span style={{ color: "#FCA5A5" }}>
-                &quot;Dhaka, Bangladesh&quot;
-              </span>
-              <span style={{ color: "#9CA3AF" }}>,</span>
-            </div>
-            <div style={{ paddingLeft: "1.5rem" }}>
-              <span style={{ color: "#6EE7B7" }}>stack</span>
+              <span style={{ color: "#6EE7B7" }}>services</span>
               <span style={{ color: "#9CA3AF" }}>:</span>{" "}
               <span style={{ color: "#9CA3AF" }}>[</span>
-              <span style={{ color: "#FCA5A5" }}>&quot;Next.js&quot;</span>
+              <span style={{ color: "#FCA5A5" }}>&quot;Web Dev&quot;</span>
               <span style={{ color: "#9CA3AF" }}>,</span>{" "}
-              <span style={{ color: "#FCA5A5" }}>&quot;Node.js&quot;</span>
+              <span style={{ color: "#FCA5A5" }}>
+                &quot;AI Automation&quot;
+              </span>
               <span style={{ color: "#9CA3AF" }}>,</span>{" "}
-              <span style={{ color: "#FCA5A5" }}>&quot;MongoDB&quot;</span>
+              <span style={{ color: "#FCA5A5" }}>
+                &quot;Brand Building&quot;
+              </span>
               <span style={{ color: "#9CA3AF" }}>]</span>
               <span style={{ color: "#9CA3AF" }}>,</span>
             </div>
             <div style={{ paddingLeft: "1.5rem" }}>
-              <span style={{ color: "#6EE7B7" }}>available</span>
+              <span style={{ color: "#6EE7B7" }}>clients</span>
               <span style={{ color: "#9CA3AF" }}>:</span>{" "}
-              <span style={{ color: "#C8B89A" }}>true</span>
+              <span style={{ color: "#FCA5A5" }}>
+                &quot;Founders &amp; Growing Businesses&quot;
+              </span>
               <span style={{ color: "#9CA3AF" }}>,</span>
             </div>
             <div style={{ paddingLeft: "1.5rem" }}>
-              <span style={{ color: "#6EE7B7" }}>passion</span>
+              <span style={{ color: "#6EE7B7" }}>focus</span>
               <span style={{ color: "#9CA3AF" }}>:</span>{" "}
               <span style={{ color: "#FCA5A5" }}>
-                &quot;Building great products&quot;
+                &quot;Revenue, not just deliverables&quot;
+              </span>
+              <span style={{ color: "#9CA3AF" }}>,</span>
+            </div>
+            <div style={{ paddingLeft: "1.5rem" }}>
+              <span style={{ color: "#6EE7B7" }}>status</span>
+              <span style={{ color: "#9CA3AF" }}>:</span>{" "}
+              <span style={{ color: "#C8B89A" }}>true</span>
+              <span style={{ color: "#9CA3AF" }}>,</span>{" "}
+              <span style={{ color: "#6B7280" }}>
+                {"// accepting new clients"}
               </span>
             </div>
             <div style={{ color: "#9CA3AF" }}>{"};"}</div>
             <br />
-            <div style={{ color: "#6B7280" }}>{"// Let's work together"}</div>
-            <div>
-              <span style={{ color: "#6EE7B7" }}>console</span>
-              <span style={{ color: "#9CA3AF" }}>.</span>
-              <span style={{ color: "#6EE7B7" }}>log</span>
-              <span style={{ color: "#9CA3AF" }}>(</span>
-              <span style={{ color: "#FCA5A5" }}>
-                &quot;Ready to build something great?&quot;
-              </span>
-              <span style={{ color: "#9CA3AF" }}>)</span>
-              <span style={{ color: "#9CA3AF" }}>;</span>
+            <div style={{ color: "#6B7280" }}>
+              {"// What we help you solve"}
             </div>
+            {[
+              "❌ Slow website losing you customers",
+              "❌ Manual tasks eating your team's hours",
+              "❌ No brand that commands premium pricing",
+              "✅ Eti Studio fixes all three.",
+            ].map((line, i) => (
+              <div
+                key={i}
+                style={{
+                  color: line.startsWith("✅") ? "#6EE7B7" : "#9CA3AF",
+                  fontSize: "0.78rem",
+                }}
+              >
+                {line}
+              </div>
+            ))}
           </div>
         </div>
       </div>
