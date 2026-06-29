@@ -5,61 +5,61 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MapPin, Calendar, ArrowRight } from "lucide-react";
 
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+if (typeof window !== "undefined") gsap.registerPlugin(ScrollTrigger);
 
 const experiences = [
   {
     company: "Heavenly Real Estate",
-    role: "Lead Developer & Digital Partner",
+    role: "Full Real Estate Platform Build",
     period: "2024 — Present",
     location: "Dhaka, Bangladesh",
-    type: "Product Build",
-    result: "Full platform launched in 90 days",
+    type: "Full Platform Build",
+    result: "0 to live platform in 90 days",
     description:
-      "A business came to us with no digital presence and a list of 400 leads they were managing in a spreadsheet. We built them a complete digital growth system — a high-performance web platform covering property listings, lead capture, blog CMS, job board, and admin dashboard. The result: a scalable, owned channel that now generates inbound enquiries daily without manual outreach.",
+      "A property agency was managing hundreds of leads inside a spreadsheet with no online presence whatsoever. We designed and built their complete digital platform from scratch — property listings with advanced filters, automated lead capture, a blog CMS for SEO content publishing, job board, gallery, and a full admin dashboard so their team manages everything without touching code. Built on Next.js and Node.js with server-side rendering for maximum Google visibility.",
     impact: [
-      "0 → full web platform in 90 days",
-      "Lead management moved from spreadsheet to automated CRM pipeline",
-      "Blog CMS enables weekly SEO content with zero developer dependency",
+      "Full platform live in under 90 days from first call",
+      "Inbound property enquiries generated daily without paid ads",
+      "Lead management moved from spreadsheet to automated pipeline",
+      "Team now publishes SEO content weekly with zero developer help",
       "Admin dashboard gives full business visibility in one place",
     ],
     tech: ["Next.js", "Node.js", "Express.js", "MongoDB", "Cloudinary", "JWT"],
   },
   {
-    company: "Client Projects",
-    role: "Full-Stack Development Studio",
+    company: "Client Builds — Property Sector",
+    role: "Real Estate Website Development",
     period: "2023 — 2024",
-    location: "Remote — Global",
-    type: "Agency Work",
-    result: "15+ projects shipped across 3 industries",
+    location: "Remote — Multiple Markets",
+    type: "Agency Projects",
+    result: "Multiple agencies, one outcome: more leads",
     description:
-      "We delivered custom web applications and digital systems for business clients across e-commerce, professional services, and SaaS. Every project was treated as a growth asset: we didn't just build what clients asked for — we challenged briefs, identified revenue opportunities in the architecture, and shipped products that worked. Clients returned because results were measurable.",
+      "We delivered custom property websites for real estate clients across multiple markets — covering residential sales agencies, lettings businesses, and independent brokers. Every project started with the same question: where is this site currently losing you enquiries? We fixed the root cause — whether that was crawl speed, broken lead capture, missing local SEO, or a mobile experience that drove buyers away — and built a platform designed to perform.",
     impact: [
-      "E-commerce clients saw average 30% improvement in page speed after rebuild",
-      "SaaS MVP delivered and investor-ready in under 8 weeks",
-      "REST APIs built to handle 10x projected traffic from day one",
-      "Zero projects required post-launch emergency fixes",
+      "Average 40% improvement in page load speed after rebuild",
+      "Lead capture forms rebuilt to convert rather than just collect",
+      "Local SEO implementation targeting city-level property search terms",
+      "Mobile experience rebuilt — the majority of property searches are on phone",
+      "Zero projects required emergency fixes post-launch",
     ],
-    tech: ["React", "Next.js", "Node.js", "MongoDB", "TailwindCSS", "Vercel"],
+    tech: ["Next.js", "React", "Node.js", "MongoDB", "TailwindCSS", "Vercel"],
   },
   {
-    company: "Open Source & R&D",
-    role: "Technical Research & Product Development",
+    company: "R&D — Real Estate Tech",
+    role: "Platform Architecture & Tooling",
     period: "2022 — 2023",
     location: "Remote",
-    type: "Internal",
-    result: "Production tooling used by 100+ developers",
+    type: "Internal R&D",
+    result: "Production systems behind every client build",
     description:
-      "Before taking on client work, we invested deeply in open-source contribution and R&D — building and publishing developer tools, REST API boilerplates, and automation utilities adopted by other engineers. This foundation is what allows us to move fast on client projects: our production templates, security middleware, and deployment pipelines are battle-tested before your project ever starts.",
+      "Before taking on real estate client work, we invested deeply in understanding what makes property websites actually generate leads — studying market leaders in the UK, UAE, Australian, and European property markets. We built and refined our core property platform architecture, lead capture systems, and SEO frameworks. Every client project runs on this battle-tested foundation, not a fresh experiment.",
     impact: [
-      "Open-source API boilerplate adopted by 100+ developers",
-      "Internal tooling reduces new project setup from days to hours",
-      "Security and authentication patterns hardened across multiple projects",
-      "Continuous learning feeds directly into client work quality",
+      "Core property listing and search engine built and refined",
+      "Lead capture and pipeline system tested across multiple builds",
+      "SEO architecture validated against real estate market leaders",
+      "Deployment infrastructure reducing new site launch time by 60%",
     ],
-    tech: ["TypeScript", "Node.js", "Express.js", "GitHub Actions", "npm"],
+    tech: ["Next.js", "TypeScript", "Node.js", "MongoDB", "GitHub Actions"],
   },
 ];
 
@@ -110,7 +110,7 @@ export default function Experience() {
     <section
       ref={sectionRef}
       id="experience"
-      aria-label="Experience"
+      aria-label="Real Estate Project Track Record"
       style={{
         padding: "8rem 2rem",
         background: "var(--surface)",
@@ -144,9 +144,8 @@ export default function Experience() {
                 color: "var(--fg)",
               }}
             >
-              Results we've delivered
+              Real estate websites we have built
             </h2>
-            {/* CTA in header — Khalid-style */}
             <a
               href="#contact"
               style={{
@@ -165,7 +164,7 @@ export default function Experience() {
                 (e.currentTarget.style.color = "var(--muted)")
               }
             >
-              Want results like these? <ArrowRight size={13} />
+              Get results like these <ArrowRight size={13} />
             </a>
           </div>
         </div>
@@ -223,7 +222,6 @@ export default function Experience() {
 
           {/* Panel */}
           <div className="exp-panel">
-            {/* Role + company */}
             <div
               style={{
                 marginBottom: "0.5rem",
@@ -254,7 +252,6 @@ export default function Experience() {
               </span>
             </div>
 
-            {/* Meta */}
             <div
               style={{
                 display: "flex",
@@ -289,7 +286,6 @@ export default function Experience() {
               </span>
             </div>
 
-            {/* Result badge */}
             <div
               style={{
                 display: "inline-flex",
@@ -319,7 +315,6 @@ export default function Experience() {
               {active.description}
             </p>
 
-            {/* Impact list */}
             <div style={{ marginBottom: "2rem" }}>
               <p
                 style={{
@@ -360,7 +355,7 @@ export default function Experience() {
                         flexShrink: 0,
                       }}
                     >
-                      →
+                      &rarr;
                     </span>
                     {item}
                   </li>
@@ -368,7 +363,6 @@ export default function Experience() {
               </ul>
             </div>
 
-            {/* Tech tags */}
             <div
               style={{
                 display: "flex",
@@ -384,7 +378,6 @@ export default function Experience() {
               ))}
             </div>
 
-            {/* Inline CTA */}
             <a
               href="#contact"
               style={{
@@ -411,7 +404,7 @@ export default function Experience() {
                 e.currentTarget.style.background = "transparent";
               }}
             >
-              Get results like this for your business <ArrowRight size={13} />
+              Get a similar site for your agency <ArrowRight size={13} />
             </a>
           </div>
         </div>

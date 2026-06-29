@@ -5,82 +5,84 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Plus, Minus, ArrowRight } from "lucide-react";
 
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+if (typeof window !== "undefined") gsap.registerPlugin(ScrollTrigger);
 
 const faqs = [
   {
-    category: "Working With Us",
-    question: "Who is Eti Studio for?",
+    category: "About Our Work",
+    question: "Do you only build websites for real estate agencies?",
     answer:
-      "We work with founders, business owners, and companies that are serious about growing online. Our clients are typically at an inflection point — they've validated their business, they know they need a better digital presence, and they're ready to invest in building the right systems. If you're looking for the cheapest option, we're probably not the right fit. If you want a strategic partner who takes ownership of results, let's talk.",
+      "Yes — entirely. We focus exclusively on real estate website development for property agencies, brokers, and developers. This is not a general web agency that takes any project that comes through the door. Every feature we build, every SEO decision we make, and every lead capture system we design is purpose-built for the property market. That focus is why our clients get results that generalist agencies cannot match.",
   },
   {
-    category: "Working With Us",
-    question: "What makes Eti Studio different from a regular web agency?",
+    category: "About Our Work",
+    question: "Which countries do you work with?",
     answer:
-      "Most agencies hand you a website and disappear. We build digital growth systems — web platforms engineered to rank and convert, AI automation that removes operational bottlenecks, and brand strategy that attracts premium clients. Everything is connected. We're also founder-led: you work directly with us, not a project manager passing work to junior developers. One point of contact. Full accountability.",
+      "We work with real estate agencies in Europe (UK, Germany, France, Netherlands, Spain, Portugal, and more), the UAE (Dubai, Abu Dhabi, and the wider GCC), Australia, and New Zealand. All work is done remotely. We understand the property market dynamics, lead behaviour, and search intent in each of these markets — which directly informs how we build and optimise every site we deliver.",
   },
   {
-    category: "Working With Us",
-    question: "Do you only work with businesses in Bangladesh?",
+    category: "About Our Work",
+    question:
+      "Why do real estate agencies need a custom website rather than a template?",
     answer:
-      "No. We're based in Dhaka but work with clients worldwide — primarily in Europe, North America, and the Middle East. All our work is done remotely. Geography has never been a barrier to delivering great results.",
+      "Template property websites are built for the average agency — which means they are average at generating leads. They load slowly, rank poorly, use generic lead forms that filter nothing, and look identical to every competitor. A custom-built real estate website is engineered around your specific market, your listings, and the exact search terms your buyers are using in your city. It is the difference between a digital brochure and a lead generation machine.",
   },
   {
-    category: "Services",
-    question: "What services does Eti Studio offer?",
+    category: "Lead Generation",
+    question: "How does a website actually generate real estate leads?",
     answer:
-      "We offer three integrated services: custom web development (Next.js, Node.js, REST APIs), AI automation and workflow systems, and brand building with digital marketing. We deliberately keep our scope focused so we can go deep on what actually drives growth — not spread ourselves thin across every trend.",
+      "Through three connected systems working together. First, SEO — your site ranks on Google for the exact terms buyers and sellers search in your market, so they find you before they find your competitors. Second, conversion design — every page is built with strategic call-to-action placement, smart enquiry forms, and psychological triggers that turn visitors into enquiries. Third, nurturing — automated follow-up sequences keep your agency top of mind for leads that are not ready to act today but will be in 30, 60, or 90 days.",
   },
   {
-    category: "Services",
-    question: "I just need a website. Can you help?",
+    category: "Lead Generation",
+    question: "How long before the website starts generating leads?",
     answer:
-      "Yes — but we'll push you to think bigger than 'just a website'. A website without SEO is invisible. A website without conversion design generates no leads. A website without a content strategy has no long-term value. We build web platforms that are engineered to actually work for your business. If you want a brochure site with no strategic thinking, we're not the right partner.",
+      "Conversion improvements are immediate — from the day your new site goes live, your enquiry rate should increase versus your old site. SEO results take longer: you can expect to see meaningful organic ranking improvements within 60 to 90 days, with compounding growth from there. In markets like Dubai where paid search dominates, we also advise on how to combine your new site with Google Ads for immediate lead volume while organic rankings build.",
   },
   {
-    category: "Services",
-    question: "What is AI automation and how can it help my business?",
+    category: "Lead Generation",
+    question:
+      "Can you integrate the website with our CRM or property management system?",
     answer:
-      "AI automation means replacing manual, repetitive tasks with intelligent systems that run 24/7. Common examples: automated lead follow-up sequences so no enquiry goes cold, AI-assisted content workflows that reduce production time by 80%, customer onboarding systems that activate new clients without your team lifting a finger, and data processing pipelines that eliminate hours of manual reporting. We map your workflow, identify where you're losing time or revenue, and build the system that fixes it.",
+      "Yes. We build direct integrations with major real estate CRMs and can connect your website lead forms to any system that has an API — including HubSpot, Salesforce, Zoho, Rex, AgentBox, and custom pipelines. Every lead captured on your website routes automatically to your team with the right data: property interest, budget range, timeline, and contact details.",
   },
   {
-    category: "Services",
-    question: "When will brand building and marketing services be available?",
+    category: "Investment & Process",
+    question: "How much does a real estate website cost?",
     answer:
-      "Brand building and digital marketing services are launching within the next three months. If you're interested, reach out now — we're selectively onboarding early clients at a reduced rate in exchange for case study rights. These spots are limited.",
+      "Our real estate websites start from $3,000 USD for a conversion-focused agency site and range upward depending on the number of listings, custom features, integrations, and ongoing SEO scope. The relevant comparison is not what the website costs — it is what a single closed property deal is worth to your agency. In most markets we serve, one additional deal from organic leads pays for the entire website within the first 60 days. Book a free call and we will scope your project within 48 hours.",
   },
   {
-    category: "Process & Timeline",
-    question: "What does the process look like from first call to launch?",
+    category: "Investment & Process",
+    question: "How long does it take to build a real estate website?",
     answer:
-      "We start with a free 30-minute strategy call to understand your business, goals, and biggest constraints. If we're a fit, we send a clear proposal: scope, timeline, and investment — no surprises. From there: discovery and architecture (1 week), design and development (4–8 weeks depending on scope), review and revision (1 week), and launch. Most projects are live within 6–10 weeks. You have a direct line to us throughout.",
+      "A standard real estate agency website with property listings, lead capture, and CMS takes 6 to 8 weeks from sign-off to launch. A full platform with advanced search, admin dashboard, CRM integration, and custom features typically takes 10 to 12 weeks. We scope every project with a fixed timeline before you commit. We do not miss deadlines.",
   },
   {
-    category: "Process & Timeline",
-    question: "How long does a custom web application take to build?",
+    category: "Investment & Process",
+    question: "What does the process look like from first contact to go-live?",
     answer:
-      "A standard business website or landing page takes 2–3 weeks. A full web application with custom backend, admin dashboard, and integrations typically takes 6–12 weeks. We scope every project clearly before we start — you'll know the timeline before you commit. We don't pad timelines and we don't miss them.",
+      "Week 0: Free 30-minute strategy call where we audit your current site and identify your biggest lead generation gaps. Week 1: If we are a good fit, we send a clear proposal — scope, timeline, investment. No surprises. Weeks 2 to 3: Discovery and architecture — understanding your market, listings, and target buyer. Weeks 4 to 9: Design and development. Weeks 10 to 11: Your review, revisions, and content loading. Week 12: Launch. You then have 30 days of post-launch support included at no additional cost.",
   },
   {
-    category: "Investment",
-    question: "How much does it cost to work with Eti Studio?",
+    category: "Investment & Process",
+    question: "Do you offer ongoing support after the website launches?",
     answer:
-      "Pricing depends on scope, complexity, and the specific services involved. We don't publish fixed prices because every business has different needs — a 5-page marketing site is a very different project from a custom SaaS platform. What we can tell you: our pricing reflects the quality and accountability of the work, not the cheapest possible execution. Book a free call and we'll give you a clear number within 48 hours.",
+      "Yes. We offer monthly support retainers covering performance monitoring, SEO optimisation, content publishing support, new feature additions, and technical maintenance. Many of our clients stay with us on a retainer because a real estate website is not a one-time project — it is an asset that needs to be actively optimised as your market changes and your listing volume grows.",
   },
   {
-    category: "Investment",
-    question: "Do you offer ongoing support after launch?",
+    category: "SEO & Rankings",
+    question:
+      "Can you help our agency rank on Google for property searches in our city?",
     answer:
-      "Yes. We offer ongoing support and growth retainers for clients who want a continuous partner — monitoring, performance optimisation, content updates, feature additions, and strategic input as your business evolves. We also offer a 30-day post-launch support window on all projects at no additional cost.",
+      "Local SEO for real estate is built into every website we deliver — it is not an add-on. We target the exact search terms buyers and sellers use in your market: city-level property searches, neighbourhood-specific queries, property type searches, and long-tail investment terms. We implement property schema markup so your listings appear in Google rich results, optimise your Google Business Profile, and build location pages for every area you serve.",
   },
   {
-    category: "Investment",
-    question: "Can I start with a small project and grow from there?",
+    category: "SEO & Rankings",
+    question:
+      "We already list on Rightmove, REA, or Property Finder. Why do we need our own website?",
     answer:
-      "Absolutely. Many of our best client relationships started with a focused scope — a fast website, a single automation system, or a brand audit — and expanded as we proved results. We'd rather earn your trust on a smaller project than oversell you on a large one. Start where you're ready.",
+      "Portal listings are rented visibility — expensive, shared with every competitor, and owned by someone else. Every lead that comes through a portal belongs to the portal, not you. Your own website is an owned asset that generates leads for free, builds your brand, and compounds in value over time. The agencies winning in every market we serve use portals for volume and their own website for brand, quality leads, and long-term independence.",
   },
 ];
 
@@ -89,10 +91,9 @@ const categories = Array.from(new Set(faqs.map((f) => f.category)));
 export default function FAQ() {
   const sectionRef = useRef<HTMLElement>(null);
   const [openIndex, setOpenIndex] = useState<number | null>(0);
-  const [activeCategory, setActiveCategory] = useState<string>("All");
+  const [activeCategory, setActiveCategory] = useState("All");
 
   const allCategories = ["All", ...categories];
-
   const filteredFaqs =
     activeCategory === "All"
       ? faqs
@@ -127,7 +128,6 @@ export default function FAQ() {
     return () => ctx.revert();
   }, []);
 
-  // Re-animate when filter changes
   useEffect(() => {
     setOpenIndex(0);
     gsap.fromTo(
@@ -137,15 +137,118 @@ export default function FAQ() {
     );
   }, [activeCategory]);
 
-  const toggle = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
+  const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i);
+
+  const renderColumn = (items: typeof filteredFaqs, indexOffset: number) => (
+    <div
+      style={{
+        borderRight: indexOffset === 0 ? "1px solid var(--border)" : "none",
+      }}
+    >
+      {items.map((faq, colIndex) => {
+        const globalIndex = colIndex * 2 + indexOffset;
+        const isOpen = openIndex === globalIndex;
+        const padStyle =
+          indexOffset === 0
+            ? { btn: "1.75rem 2rem 1.75rem 0", ans: "0 2rem 1.75rem 0" }
+            : { btn: "1.75rem 0 1.75rem 2rem", ans: "0 0 1.75rem 2rem" };
+        return (
+          <div
+            key={globalIndex}
+            className="faq-item"
+            style={{ borderBottom: "1px solid var(--border)" }}
+          >
+            <button
+              onClick={() => toggle(globalIndex)}
+              aria-expanded={isOpen}
+              style={{
+                width: "100%",
+                padding: padStyle.btn,
+                background: "none",
+                border: "none",
+                textAlign: "left",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "flex-start",
+                justifyContent: "space-between",
+                gap: "1rem",
+              }}
+            >
+              <div>
+                <span
+                  style={{
+                    fontSize: "0.67rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.09em",
+                    textTransform: "uppercase",
+                    color: "var(--accent)",
+                    display: "block",
+                    marginBottom: "0.4rem",
+                  }}
+                >
+                  {faq.category}
+                </span>
+                <span
+                  style={{
+                    fontSize: "0.95rem",
+                    fontWeight: 600,
+                    color: "var(--fg)",
+                    lineHeight: 1.45,
+                  }}
+                >
+                  {faq.question}
+                </span>
+              </div>
+              <span
+                style={{
+                  width: "28px",
+                  height: "28px",
+                  border: `1px solid ${isOpen ? "var(--accent)" : "var(--border)"}`,
+                  borderRadius: "2px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: isOpen ? "var(--accent)" : "var(--muted)",
+                  flexShrink: 0,
+                  marginTop: "2px",
+                  transition: "color 0.2s ease, border-color 0.2s ease",
+                }}
+              >
+                {isOpen ? <Minus size={14} /> : <Plus size={14} />}
+              </span>
+            </button>
+            <div
+              style={{
+                maxHeight: isOpen ? "500px" : "0",
+                overflow: "hidden",
+                transition: "max-height 0.4s ease",
+              }}
+            >
+              <p
+                style={{
+                  padding: padStyle.ans,
+                  fontSize: "0.88rem",
+                  color: "var(--muted)",
+                  lineHeight: 1.85,
+                }}
+              >
+                {faq.answer}
+              </p>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+
+  const leftItems = filteredFaqs.filter((_, i) => i % 2 === 0);
+  const rightItems = filteredFaqs.filter((_, i) => i % 2 !== 0);
 
   return (
     <section
       ref={sectionRef}
       id="faq"
-      aria-label="Frequently Asked Questions"
+      aria-label="Real Estate Website Development FAQ"
       style={{
         padding: "8rem 2rem",
         borderTop: "1px solid var(--border)",
@@ -153,7 +256,6 @@ export default function FAQ() {
       }}
     >
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        {/* Header */}
         <div
           className="faq-header"
           style={{
@@ -182,9 +284,9 @@ export default function FAQ() {
                 lineHeight: 1.2,
               }}
             >
-              Questions businesses
+              Questions real estate
               <br />
-              ask before they hire us.
+              agencies ask us first.
             </h2>
           </div>
           <div>
@@ -196,10 +298,10 @@ export default function FAQ() {
                 marginBottom: "1.5rem",
               }}
             >
-              We believe in full transparency before any commitment. Below are
-              the questions every serious business owner should ask a digital
-              agency — and our honest answers. If you don't find what you're
-              looking for, reach out directly.
+              Honest answers to the questions every property agency should ask
+              before investing in a new website. If you do not find what you are
+              looking for, reach out directly — we respond within one business
+              day.
             </p>
             <a
               href="#contact"
@@ -225,7 +327,7 @@ export default function FAQ() {
           </div>
         </div>
 
-        {/* Category filter tabs */}
+        {/* Filter tabs */}
         <div
           style={{
             display: "flex",
@@ -278,220 +380,17 @@ export default function FAQ() {
           ))}
         </div>
 
-        {/* FAQ accordion */}
+        {/* Two column accordion */}
         <div
           className="faq-list"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "0",
-          }}
+          style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}
           id="faq-grid"
         >
-          {/* Left column */}
-          <div style={{ borderRight: "1px solid var(--border)" }}>
-            {filteredFaqs
-              .filter((_, i) => i % 2 === 0)
-              .map((faq, colIndex) => {
-                const globalIndex = colIndex * 2;
-                const isOpen = openIndex === globalIndex;
-                return (
-                  <div
-                    key={globalIndex}
-                    className="faq-item"
-                    style={{
-                      borderBottom: "1px solid var(--border)",
-                    }}
-                  >
-                    <button
-                      onClick={() => toggle(globalIndex)}
-                      aria-expanded={isOpen}
-                      style={{
-                        width: "100%",
-                        padding: "1.75rem 2rem 1.75rem 0",
-                        background: "none",
-                        border: "none",
-                        textAlign: "left",
-                        cursor: "pointer",
-                        display: "flex",
-                        alignItems: "flex-start",
-                        justifyContent: "space-between",
-                        gap: "1rem",
-                      }}
-                    >
-                      <div>
-                        <span
-                          style={{
-                            fontSize: "0.67rem",
-                            fontWeight: 700,
-                            letterSpacing: "0.09em",
-                            textTransform: "uppercase",
-                            color: "var(--accent)",
-                            display: "block",
-                            marginBottom: "0.4rem",
-                          }}
-                        >
-                          {faq.category}
-                        </span>
-                        <span
-                          style={{
-                            fontSize: "0.95rem",
-                            fontWeight: 600,
-                            color: "var(--fg)",
-                            lineHeight: 1.45,
-                          }}
-                        >
-                          {faq.question}
-                        </span>
-                      </div>
-                      <span
-                        style={{
-                          width: "28px",
-                          height: "28px",
-                          border: "1px solid var(--border)",
-                          borderRadius: "2px",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          color: isOpen ? "var(--accent)" : "var(--muted)",
-                          flexShrink: 0,
-                          marginTop: "2px",
-                          transition: "color 0.2s ease, border-color 0.2s ease",
-                          borderColor: isOpen
-                            ? "var(--accent)"
-                            : "var(--border)",
-                        }}
-                      >
-                        {isOpen ? <Minus size={14} /> : <Plus size={14} />}
-                      </span>
-                    </button>
-
-                    <div
-                      style={{
-                        maxHeight: isOpen ? "400px" : "0",
-                        overflow: "hidden",
-                        transition: "max-height 0.4s ease",
-                      }}
-                    >
-                      <p
-                        style={{
-                          padding: "0 2rem 1.75rem 0",
-                          fontSize: "0.88rem",
-                          color: "var(--muted)",
-                          lineHeight: 1.85,
-                        }}
-                      >
-                        {faq.answer}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-          </div>
-
-          {/* Right column */}
-          <div>
-            {filteredFaqs
-              .filter((_, i) => i % 2 !== 0)
-              .map((faq, colIndex) => {
-                const globalIndex = colIndex * 2 + 1;
-                const isOpen = openIndex === globalIndex;
-                return (
-                  <div
-                    key={globalIndex}
-                    className="faq-item"
-                    style={{
-                      borderBottom: "1px solid var(--border)",
-                    }}
-                  >
-                    <button
-                      onClick={() => toggle(globalIndex)}
-                      aria-expanded={isOpen}
-                      style={{
-                        width: "100%",
-                        padding: "1.75rem 0 1.75rem 2rem",
-                        background: "none",
-                        border: "none",
-                        textAlign: "left",
-                        cursor: "pointer",
-                        display: "flex",
-                        alignItems: "flex-start",
-                        justifyContent: "space-between",
-                        gap: "1rem",
-                      }}
-                    >
-                      <div>
-                        <span
-                          style={{
-                            fontSize: "0.67rem",
-                            fontWeight: 700,
-                            letterSpacing: "0.09em",
-                            textTransform: "uppercase",
-                            color: "var(--accent)",
-                            display: "block",
-                            marginBottom: "0.4rem",
-                          }}
-                        >
-                          {faq.category}
-                        </span>
-                        <span
-                          style={{
-                            fontSize: "0.95rem",
-                            fontWeight: 600,
-                            color: "var(--fg)",
-                            lineHeight: 1.45,
-                          }}
-                        >
-                          {faq.question}
-                        </span>
-                      </div>
-                      <span
-                        style={{
-                          width: "28px",
-                          height: "28px",
-                          border: "1px solid var(--border)",
-                          borderRadius: "2px",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          color: isOpen ? "var(--accent)" : "var(--muted)",
-                          flexShrink: 0,
-                          marginTop: "2px",
-                          transition: "color 0.2s ease, border-color 0.2s ease",
-                          borderColor: isOpen
-                            ? "var(--accent)"
-                            : "var(--border)",
-                        }}
-                      >
-                        {isOpen ? <Minus size={14} /> : <Plus size={14} />}
-                      </span>
-                    </button>
-
-                    <div
-                      style={{
-                        maxHeight: isOpen ? "400px" : "0",
-                        overflow: "hidden",
-                        transition: "max-height 0.4s ease",
-                      }}
-                    >
-                      <p
-                        style={{
-                          padding: "0 0 1.75rem 2rem",
-                          fontSize: "0.88rem",
-                          color: "var(--muted)",
-                          lineHeight: 1.85,
-                        }}
-                      >
-                        {faq.answer}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-          </div>
+          {renderColumn(leftItems, 0)}
+          {renderColumn(rightItems, 1)}
         </div>
 
-        {/* Bottom CTA — Acquisition.com style close */}
+        {/* Bottom CTA */}
         <div
           style={{
             marginTop: "5rem",
@@ -518,23 +417,23 @@ export default function FAQ() {
               lineHeight: 1.2,
             }}
           >
-            The fastest way to know if we're a fit
+            The fastest way to know if we are right
             <br />
-            is a 30-minute call.
+            for your agency is a 30-minute call.
           </h3>
           <p
             style={{
               color: "var(--muted)",
               fontSize: "0.92rem",
               lineHeight: 1.8,
-              maxWidth: "480px",
+              maxWidth: "500px",
               margin: "0 auto 2.5rem",
             }}
           >
-            No pitch deck. No pressure. We'll look at your business, tell you
-            honestly what we think the biggest opportunity is, and show you what
-            we'd do about it. You leave with a clear plan — whether you hire us
-            or not.
+            We will audit your current website live on the call — speed, SEO,
+            lead capture, mobile performance — and show you exactly what is
+            costing you enquiries. Free, no obligation, and you leave with a
+            clear picture of what to fix.
           </p>
           <div
             style={{
@@ -566,7 +465,7 @@ export default function FAQ() {
                 (e.currentTarget.style.background = "var(--fg)")
               }
             >
-              Book Free Strategy Call <ArrowRight size={14} />
+              Book Free Website Audit <ArrowRight size={14} />
             </a>
             <a
               href="#services"
@@ -590,7 +489,7 @@ export default function FAQ() {
                 (e.currentTarget.style.borderColor = "var(--border)")
               }
             >
-              Explore Our Services
+              See Our Services
             </a>
           </div>
         </div>
@@ -601,8 +500,7 @@ export default function FAQ() {
           #faq-header-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
           #faq-grid { grid-template-columns: 1fr !important; }
           #faq-grid > div:first-child { border-right: none !important; }
-          .faq-item button { padding-left: 0 !important; padding-right: 0 !important; }
-          .faq-item p { padding-left: 0 !important; padding-right: 0 !important; }
+          .faq-item button, .faq-item p { padding-left: 0 !important; padding-right: 0 !important; }
         }
       `}</style>
     </section>

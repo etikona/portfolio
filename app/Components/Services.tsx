@@ -3,63 +3,67 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Code2, Zap, TrendingUp, ArrowRight } from "lucide-react";
+import { Globe, MousePointerClick, Settings, ArrowRight } from "lucide-react";
 
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+if (typeof window !== "undefined") gsap.registerPlugin(ScrollTrigger);
 
 const services = [
   {
-    icon: Code2,
+    icon: Globe,
     number: "01",
-    title: "Custom Web Development",
-    tagline: "Your website should win you clients while you sleep.",
+    title: "Custom Real Estate Website Development",
+    tagline: "Not a template. A lead generation machine built for your agency.",
     description:
-      "Most business websites are digital brochures. We build growth platforms — custom Next.js web applications engineered for speed, SEO, and conversions. From REST API architecture to pixel-perfect frontends, every line of code is built to turn visitors into paying customers.",
-    painPoint: "Losing customers to a slow, outdated site?",
+      "We build fully custom real estate websites from scratch using Next.js — the fastest framework available. Property search with advanced filters, map integrations, listing management, mortgage calculators, virtual tour embeds, and a content management system your team can actually use without developer help. Every site is structured for Google from the first line of code.",
+    painPoint: "Is your current site losing you enquiries every single day?",
     outcomes: [
-      "Pages that load in under 2 seconds",
-      "Built to rank on Google from day one",
-      "Designed to convert — not just look good",
-      "Scalable architecture that grows with you",
+      "Property search and advanced filter system",
+      "Google-structured SEO from day one",
+      "Lead capture forms built to convert, not just collect",
+      "CMS so your team can manage listings independently",
+      "Mobile-first — the majority of your buyers are on phone",
+      "Sub-3 second load time, every page",
     ],
-    cta: "Start your web project →",
+    cta: "Start your real estate website",
     href: "#contact",
   },
   {
-    icon: Zap,
+    icon: MousePointerClick,
     number: "02",
-    title: "AI Automation & Workflows",
-    tagline: "Stop doing manually what a system can do for you.",
+    title: "Lead Generation & Conversion Optimisation",
+    tagline: "Traffic without enquiries is just a vanity metric.",
     description:
-      "Your team is wasting hours on tasks that AI can handle in seconds. We map your biggest operational bottlenecks — lead follow-up, onboarding sequences, content workflows, data processing — and replace them with intelligent automation systems that run 24/7 without you.",
-    painPoint: "Team buried in repetitive work that doesn't scale?",
+      "A beautiful website means nothing if visitors leave without contacting you. We engineer every page around conversion — strategic call-to-action placement, smart enquiry forms that pre-qualify leads, WhatsApp and callback integrations, property alert signup systems, and automated follow-up pipelines that nurture cold leads until they are ready to buy. You get more enquiries from the same traffic.",
+    painPoint: "Getting visitors but no enquiries from your property website?",
     outcomes: [
-      "Automated lead capture and follow-up",
-      "AI-powered customer onboarding flows",
-      "Custom bots and workflow integrations",
-      "Hours saved every week, starting day one",
+      "Strategic CTA placement on every key page",
+      "Smart enquiry forms with pre-qualification fields",
+      "WhatsApp and direct call integrations",
+      "Property alert and email capture systems",
+      "Automated lead nurturing sequences",
+      "Heatmap and conversion tracking setup",
     ],
-    cta: "Automate your business →",
+    cta: "Fix your lead conversion",
     href: "#contact",
   },
   {
-    icon: TrendingUp,
+    icon: Settings,
     number: "03",
-    title: "Brand Building & Digital Marketing",
-    tagline:
-      "The right brand attracts premium clients. The wrong one attracts price shoppers.",
+    title: "Real Estate SEO & Local Search Visibility",
+    tagline: "The best real estate website is the one buyers find on Google.",
     description:
-      "We help ambitious businesses build brands that command authority and attract high-value clients. Brand identity, positioning strategy, content systems, and SEO — designed together so every touchpoint tells the same compelling story and drives inbound demand.",
-    painPoint: "Competing on price because no one knows who you are?",
+      "We optimise your real estate website to rank for the searches your buyers and sellers are actually making in your local market — whether that is London, Dubai, Sydney, or Auckland. Full technical SEO implementation, property schema markup so your listings appear in rich results, Google Business Profile optimisation, location-targeted content, and ongoing performance monitoring.",
+    painPoint:
+      "Invisible on Google while competitors take all the organic leads?",
     outcomes: [
-      "Brand strategy that positions you as the obvious choice",
-      "Visual identity that earns trust on first impression",
-      "Content and SEO that generates inbound leads",
-      "LinkedIn presence that attracts decision-makers",
+      "Local SEO targeting your city and market keywords",
+      "Property listing schema for Google rich results",
+      "Technical SEO audit and full implementation",
+      "Google Business Profile optimisation",
+      "Location pages for every area you serve",
+      "Monthly performance reporting — rankings and traffic",
     ],
-    cta: "Build your brand →",
+    cta: "Rank in your market",
     href: "#contact",
   },
 ];
@@ -100,7 +104,7 @@ export default function Services() {
     <section
       ref={sectionRef}
       id="services"
-      aria-label="Services"
+      aria-label="Real Estate Website Development Services"
       style={{
         padding: "8rem 2rem",
         background: "var(--surface)",
@@ -109,7 +113,6 @@ export default function Services() {
       }}
     >
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        {/* Header */}
         <div
           className="svc-header"
           style={{
@@ -138,9 +141,9 @@ export default function Services() {
                 lineHeight: 1.2,
               }}
             >
-              Three ways we grow
+              Everything your real estate
               <br />
-              your business online.
+              agency needs to win online.
             </h2>
           </div>
           <div>
@@ -152,12 +155,11 @@ export default function Services() {
                 marginBottom: "1.5rem",
               }}
             >
-              Most agencies make you hire three vendors — a web developer, an
-              automation consultant, and a marketing agency — then hope they
-              coordinate. We do all three under one roof, with one point of
-              contact, and a strategy that connects them.
+              We do not build generic websites. We specialise entirely in real
+              estate — which means every feature, every decision, and every line
+              of code is built around one outcome: more qualified enquiries for
+              your agency, without depending on third-party portals.
             </p>
-            {/* CTA in header — catch skimmers */}
             <a
               href="#contact"
               style={{
@@ -177,12 +179,11 @@ export default function Services() {
               }
               onMouseLeave={(e) => (e.currentTarget.style.color = "var(--fg)")}
             >
-              See which service fits you <ArrowRight size={14} />
+              Discuss your project <ArrowRight size={14} />
             </a>
           </div>
         </div>
 
-        {/* Service cards — full-width stacked for detail */}
         <div
           className="svc-list"
           style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}
@@ -219,14 +220,10 @@ export default function Services() {
                 }
               >
                 <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "1fr 1fr",
-                    gap: "0",
-                  }}
+                  style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}
                   className="svc-inner"
                 >
-                  {/* Left panel */}
+                  {/* Left */}
                   <div
                     style={{
                       padding: "2.5rem",
@@ -268,7 +265,6 @@ export default function Services() {
                         {number}
                       </span>
                     </div>
-
                     <h3
                       style={{
                         fontFamily: "'Playfair Display', serif",
@@ -281,7 +277,6 @@ export default function Services() {
                     >
                       {title}
                     </h3>
-
                     <p
                       style={{
                         fontSize: "0.82rem",
@@ -293,7 +288,6 @@ export default function Services() {
                     >
                       {tagline}
                     </p>
-
                     <p
                       style={{
                         fontSize: "0.9rem",
@@ -304,7 +298,6 @@ export default function Services() {
                     >
                       {description}
                     </p>
-
                     <a
                       href={href}
                       style={{
@@ -329,11 +322,11 @@ export default function Services() {
                         (e.currentTarget.style.background = "var(--fg)")
                       }
                     >
-                      {cta}
+                      {cta} &rarr;
                     </a>
                   </div>
 
-                  {/* Right panel — pain point + outcomes */}
+                  {/* Right */}
                   <div
                     style={{ padding: "2.5rem", background: "var(--surface)" }}
                   >
@@ -357,10 +350,9 @@ export default function Services() {
                         {painPoint}
                       </p>
                     </div>
-
                     <p
                       style={{
-                        fontSize: "0.75rem",
+                        fontSize: "0.72rem",
                         fontWeight: 700,
                         letterSpacing: "0.1em",
                         textTransform: "uppercase",
@@ -368,9 +360,8 @@ export default function Services() {
                         marginBottom: "1rem",
                       }}
                     >
-                      What you get
+                      What is included
                     </p>
-
                     <ul
                       style={{
                         listStyle: "none",
@@ -393,29 +384,13 @@ export default function Services() {
                         >
                           <span
                             style={{
-                              width: "18px",
-                              height: "18px",
-                              borderRadius: "50%",
-                              background: "var(--accent)",
-                              opacity: 0.15,
+                              color: "var(--accent)",
+                              fontWeight: 700,
                               flexShrink: 0,
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "center",
-                              position: "relative",
-                              marginTop: "2px",
+                              marginTop: "1px",
                             }}
                           >
-                            <span
-                              style={{
-                                width: "6px",
-                                height: "6px",
-                                borderRadius: "50%",
-                                background: "var(--accent)",
-                                opacity: 6,
-                                position: "absolute",
-                              }}
-                            />
+                            &rarr;
                           </span>
                           {outcome}
                         </li>
@@ -428,7 +403,7 @@ export default function Services() {
           )}
         </div>
 
-        {/* Bottom CTA — Acquisition.com style "are you a fit" */}
+        {/* Bottom CTA */}
         <div
           style={{
             marginTop: "4rem",
@@ -443,7 +418,7 @@ export default function Services() {
             className="tag"
             style={{ marginBottom: "1rem", display: "inline-flex" }}
           >
-            Let's talk
+            Let&apos;s Talk
           </span>
           <h3
             style={{
@@ -454,7 +429,7 @@ export default function Services() {
               marginBottom: "0.75rem",
             }}
           >
-            Ready to stop leaving revenue on the table?
+            Stop losing listings to agencies with better websites.
           </h3>
           <p
             style={{
@@ -465,9 +440,9 @@ export default function Services() {
               margin: "0 auto 2rem",
             }}
           >
-            Book a free 30-minute strategy call. We'll look at your business,
-            identify your biggest growth lever, and show you exactly how we'd
-            fix it. No fluff. No sales pitch. Just a clear plan.
+            Book a free 30-minute call. We will review your current website,
+            show you exactly what is costing you leads, and give you a clear
+            plan to fix it — whether you hire us or not.
           </p>
           <div
             style={{
@@ -496,7 +471,7 @@ export default function Services() {
                 (e.currentTarget.style.background = "var(--fg)")
               }
             >
-              Book Free Strategy Call →
+              Book Free Website Review &rarr;
             </a>
             <a
               href="#projects"
@@ -520,7 +495,7 @@ export default function Services() {
                 (e.currentTarget.style.borderColor = "var(--border)")
               }
             >
-              See Case Studies
+              See Real Estate Projects
             </a>
           </div>
         </div>

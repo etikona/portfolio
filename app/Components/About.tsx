@@ -3,49 +3,53 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Code2, Zap, TrendingUp, Globe } from "lucide-react";
+import { Search, MousePointerClick, BarChart3, Smartphone } from "lucide-react";
 
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+if (typeof window !== "undefined") gsap.registerPlugin(ScrollTrigger);
 
 const pillars = [
   {
-    icon: Code2,
-    title: "Web Development",
-    items: ["Next.js", "React", "Node.js", "REST APIs", "MongoDB"],
-  },
-  {
-    icon: Zap,
-    title: "AI Automation",
+    icon: Search,
+    title: "SEO-First Architecture",
     items: [
-      "Workflow Automation",
-      "AI Integration",
-      "Lead Systems",
-      "Make / Zapier",
-      "Custom Bots",
+      "Google-ready structure",
+      "Local SEO for your market",
+      "Schema markup for listings",
+      "Fast Core Web Vitals",
+      "XML sitemap & indexing",
     ],
   },
   {
-    icon: TrendingUp,
-    title: "Brand Building",
+    icon: MousePointerClick,
+    title: "Lead Capture Systems",
     items: [
-      "Brand Strategy",
-      "Visual Identity",
-      "Positioning",
-      "Content Systems",
-      "LinkedIn Growth",
+      "Smart enquiry forms",
+      "Property alert signups",
+      "WhatsApp integration",
+      "CRM pipeline connection",
+      "Automated follow-up",
     ],
   },
   {
-    icon: Globe,
-    title: "Growth & Scale",
+    icon: Smartphone,
+    title: "Mobile-First Design",
     items: [
-      "SEO & GEO",
-      "Conversion Rate Opt.",
-      "Performance",
-      "Analytics",
-      "Ongoing Support",
+      "Responsive on all devices",
+      "Sub-3s load time",
+      "Touch-optimised search",
+      "Click-to-call buttons",
+      "Map & location features",
+    ],
+  },
+  {
+    icon: BarChart3,
+    title: "Built to Scale",
+    items: [
+      "Unlimited listings",
+      "Admin dashboard",
+      "Blog & content CMS",
+      "Analytics integration",
+      "Easy self-management",
     ],
   },
 ];
@@ -64,10 +68,7 @@ export default function About() {
           duration: 0.7,
           stagger: 0.15,
           ease: "power2.out",
-          scrollTrigger: {
-            trigger: ".about-text",
-            start: "top 80%",
-          },
+          scrollTrigger: { trigger: ".about-text", start: "top 80%" },
         },
       );
       gsap.fromTo(
@@ -79,10 +80,7 @@ export default function About() {
           duration: 0.5,
           stagger: 0.1,
           ease: "power2.out",
-          scrollTrigger: {
-            trigger: ".skills-grid",
-            start: "top 80%",
-          },
+          scrollTrigger: { trigger: ".skills-grid", start: "top 80%" },
         },
       );
     }, sectionRef);
@@ -97,12 +95,10 @@ export default function About() {
       style={{ padding: "8rem 2rem" }}
     >
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        {/* Section label */}
         <div style={{ marginBottom: "3.5rem" }}>
-          <span className="tag">About the Studio</span>
+          <span className="tag">Who We Are</span>
         </div>
 
-        {/* Two-column layout */}
         <div
           style={{
             display: "grid",
@@ -113,7 +109,7 @@ export default function About() {
           }}
           className="about-cols"
         >
-          {/* Left — pain-point copy */}
+          {/* Left */}
           <div className="about-text">
             <h2
               style={{
@@ -126,9 +122,9 @@ export default function About() {
                 color: "var(--fg)",
               }}
             >
-              Most businesses have a website.{" "}
+              Your agency deserves a website that works{" "}
               <em style={{ color: "var(--accent)", fontStyle: "italic" }}>
-                Few have a growth engine.
+                as hard as you do.
               </em>
             </h2>
 
@@ -140,10 +136,11 @@ export default function About() {
                 fontSize: "0.95rem",
               }}
             >
-              Eti Studio is a founder-led digital growth agency based in Dhaka,
-              Bangladesh, working with startups and businesses worldwide. We
-              don't just build websites — we build systems that attract
-              customers, qualify leads, and convert them into revenue.
+              We are Eti Studio — a specialist real estate website development
+              studio serving property agencies, brokers, and developers across
+              Europe, the UAE, Australia, and New Zealand. We build one type of
+              website: custom real estate platforms that rank on Google and
+              convert visitors into qualified enquiries.
             </p>
             <p
               style={{
@@ -153,14 +150,13 @@ export default function About() {
                 marginBottom: "2rem",
               }}
             >
-              Our three-pillar approach covers everything a growing business
-              needs: a high-performance web platform engineered to rank and
-              convert, AI automation workflows that eliminate manual
-              bottlenecks, and a brand strategy that positions you as the
-              obvious choice in your market.
+              Most real estate agencies are invisible online, relying entirely
+              on portals like Rightmove, REA, or Property Finder for leads. That
+              means you pay forever and own nothing. We give you an owned
+              channel — a high-performance website that generates inbound leads
+              daily, independent of any third-party platform.
             </p>
 
-            {/* Inline CTA — catch readers mid-scroll */}
             <a
               href="#contact"
               style={{
@@ -183,32 +179,36 @@ export default function About() {
                 (e.currentTarget.style.background = "var(--fg)")
               }
             >
-              See if we're a fit →
+              Get a Free Site Audit &rarr;
             </a>
           </div>
 
-          {/* Right — stats with Acquisition.com-style authority signals */}
+          {/* Right — stats + quote */}
           <div className="about-text">
             <div
               style={{
                 display: "grid",
                 gridTemplateColumns: "1fr 1fr",
                 gap: "1.5rem",
+                marginBottom: "1.5rem",
               }}
             >
               {[
                 {
-                  number: "3+",
-                  label: "Years delivering production-grade digital products",
-                },
-                {
                   number: "15+",
-                  label: "Businesses launched, scaled, or rebuilt",
+                  label: "Real estate websites built for agencies worldwide",
                 },
-                { number: "8+", label: "Active clients across 3 continents" },
                 {
-                  number: "1",
-                  label: "Point of contact — no handoffs, no junior work",
+                  number: "4",
+                  label: "Target markets: Europe, UAE, Australia, New Zealand",
+                },
+                {
+                  number: "90",
+                  label: "Days average from first call to live website",
+                },
+                {
+                  number: "0",
+                  label: "Templates used — every site is custom built",
                 },
               ].map(({ number, label }) => (
                 <div
@@ -246,10 +246,8 @@ export default function About() {
               ))}
             </div>
 
-            {/* Pain points — Khalid-style honest framing */}
             <div
               style={{
-                marginTop: "2rem",
                 padding: "1.5rem",
                 border: "1px solid var(--border)",
                 borderLeft: "3px solid var(--accent)",
@@ -265,9 +263,10 @@ export default function About() {
                   fontStyle: "italic",
                 }}
               >
-                "We don't outsource. We don't disappear after launch. You work
-                directly with us — the people who built your system are the same
-                people optimising it."
+                &quot;Most real estate agencies spend thousands on portal
+                listings they will never own. One well-built website pays for
+                itself in a single closed deal and keeps generating leads for
+                years.&quot;
               </p>
               <p
                 style={{
@@ -277,7 +276,7 @@ export default function About() {
                   marginTop: "0.75rem",
                 }}
               >
-                — Eti, Founder
+                — Eti, Founder &amp; Lead Developer
               </p>
             </div>
           </div>
@@ -285,8 +284,8 @@ export default function About() {
 
         <hr className="section-rule" style={{ marginBottom: "4rem" }} />
 
-        {/* Service pillars grid */}
-        <div style={{ marginBottom: "3rem" }}>
+        {/* What we build into every site */}
+        <div style={{ marginBottom: "2.5rem" }}>
           <h3
             style={{
               fontFamily: "'Playfair Display', serif",
@@ -296,11 +295,10 @@ export default function About() {
               marginBottom: "0.5rem",
             }}
           >
-            Everything your business needs to grow online
+            What we build into every real estate website
           </h3>
           <p style={{ fontSize: "0.85rem", color: "var(--muted)" }}>
-            Web development, AI automation, brand building, and growth — one
-            studio, no coordination overhead.
+            Not bolt-ons. Not plugins. Built from the ground up for your market.
           </p>
         </div>
 
@@ -407,12 +405,19 @@ export default function About() {
                 marginBottom: "0.4rem",
               }}
             >
-              Not sure which service you need?
+              Is your current website costing you listings?
             </p>
-            <p style={{ fontSize: "0.85rem", color: "var(--muted)" }}>
-              Book a free 30-minute strategy call. We'll diagnose your biggest
-              growth bottleneck and tell you exactly what to do about it — no
-              pitch, no pressure.
+            <p
+              style={{
+                fontSize: "0.85rem",
+                color: "var(--muted)",
+                maxWidth: "480px",
+                lineHeight: 1.7,
+              }}
+            >
+              Send us your URL. We will audit your real estate website for free
+              — speed, SEO, lead capture, and mobile performance — and tell you
+              exactly what is losing you enquiries.
             </p>
           </div>
           <a
@@ -435,21 +440,15 @@ export default function About() {
               (e.currentTarget.style.background = "var(--fg)")
             }
           >
-            Book Free Call →
+            Get Free Audit &rarr;
           </a>
         </div>
       </div>
 
       <style>{`
-        @media (max-width: 900px) {
-          .about-cols { grid-template-columns: 1fr !important; gap: 3rem !important; }
-        }
-        @media (max-width: 768px) {
-          .skills-grid { grid-template-columns: repeat(2, 1fr) !important; }
-        }
-        @media (max-width: 480px) {
-          .skills-grid { grid-template-columns: 1fr !important; }
-        }
+        @media (max-width: 900px) { .about-cols { grid-template-columns: 1fr !important; gap: 3rem !important; } }
+        @media (max-width: 768px) { .skills-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+        @media (max-width: 480px) { .skills-grid { grid-template-columns: 1fr !important; } }
       `}</style>
     </section>
   );

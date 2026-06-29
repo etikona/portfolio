@@ -1,24 +1,23 @@
 import type { Metadata } from "next";
 import { BlogPost } from "../Types";
 import Navbar from "../Components/Shared/Navbar";
-import Footer from "../Components/Shared/Footer";
 import BlogClient from "./BlogClient";
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: "Blog | Eti Studio",
   description:
-    "Thoughts on full-stack development, Node.js, Next.js, system design, and building real-world web products.",
+    "Insights on real estate website development, property lead generation, and digital marketing for property agencies in Europe, UAE, Australia, and New Zealand.",
   openGraph: {
-    title: "Blog | Eti",
+    title: "Blog | Eti Studio",
     description:
-      "Thoughts on full-stack development, Node.js, Next.js, system design, and building real-world web products.",
+      "Insights on real estate website development, lead generation, and digital marketing for property agencies worldwide.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blog | Eti",
+    title: "Blog | Eti Studio",
     description:
-      "Thoughts on full-stack development, Node.js, Next.js, system design, and building real-world web products.",
+      "Insights on real estate website development, lead generation, and digital marketing for property agencies worldwide.",
   },
 };
 
@@ -31,8 +30,9 @@ async function getPosts(): Promise<BlogPost[]> {
         : "http://localhost:3000");
 
     const res = await fetch(`${baseUrl}/api/posts`, {
-      next: { revalidate: 60 },
+      cache: "no-store",
     });
+
     if (!res.ok) return [];
     return res.json();
   } catch {

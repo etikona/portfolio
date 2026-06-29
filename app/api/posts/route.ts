@@ -1,136 +1,264 @@
-import { BlogPost } from "@/app/Types";
 import { NextRequest, NextResponse } from "next/server";
 
-// In-memory store — replace with MongoDB when ready
-// Example MongoDB integration is commented below
-let posts: BlogPost[] = [
-  {
-    _id: "1",
-    title: "Building a Production REST API with Node.js and Express",
-    slug: "building-production-rest-api-nodejs-express",
-    excerpt:
-      "A comprehensive guide to structuring a Node.js/Express API for production — authentication, error handling, validation, and deployment.",
-    content: "",
-    tags: ["Node.js", "Express", "API", "Backend"],
-    published: true,
-    publishedAt: "2024-12-01",
-    readTime: 8,
-  },
-  {
-    _id: "2",
-    title: "Next.js App Router: What Changed and Why It Matters",
-    slug: "nextjs-app-router-guide",
-    excerpt:
-      "Deep diving into the Next.js App Router — server components, layouts, loading states, and how it changes the way we think about React apps.",
-    content: "",
-    tags: ["Next.js", "React", "Frontend"],
-    published: true,
-    publishedAt: "2024-11-15",
-    readTime: 6,
-  },
-];
+import { ObjectId } from "mongodb";
+import { BlogPost } from "@/app/Types";
+import { getDb } from "@/app/lib/mongodb";
 
-// ─── GET /api/posts ───────────────────────────────────────────────
-export async function GET(req: NextRequest) {
-  const { searchParams } = new URL(req.url);
-  const tag = searchParams.get("tag");
-  const slug = searchParams.get("slug");
-
-  /* MongoDB example:
-  const client = await MongoClient.connect(process.env.MONGODB_URI!);
-  const db = client.db();
-  const collection = db.collection<BlogPost>("posts");
-  const query: Filter<BlogPost> = { published: true };
-  if (tag) query.tags = tag;
-  if (slug) query.slug = slug;
-  const results = await collection.find(query).sort({ publishedAt: -1 }).toArray();
-  await client.close();
-  return NextResponse.json(results);
-  */
-
-  let results = posts.filter((p) => p.published);
-  if (tag) results = results.filter((p) => p.tags.includes(tag));
-  if (slug) {
-    const post = results.find((p) => p.slug === slug);
-    return post
-      ? NextResponse.json(post)
-      : NextResponse.json({ error: "Post not found" }, { status: 404 });
-  }
-
-  return NextResponse.json(results);
+// ── Auth helper ──────────────────────────────────────────────────
+function isAuthorized(req: NextRequest): boolean {
+  const apiKey = req.headers.get("x-api-key");
+  return apiKey === process.env.ADMIN_API_KEY;
 }
 
-// ─── POST /api/posts ──────────────────────────────────────────────
+// ── Slug generator ───────────────────────────────────────────────
+function generateSlug(title: string): string {
+  return title
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
+}
+
+// ── Read time calculator ─────────────────────────────────────────
+function calcReadTime(content: string): number {
+  // Strip HTML tags before counting words
+  const text = content.replace(/<[^>]*>/g, " ");
+  return Math.max(1, Math.ceil(text.split(/\s+/).filter(Boolean).length / 200));
+}
+
+// ─── GET /api/posts ──────────────────────────────────────────────
+// Public:  GET /api/posts              → all published posts
+// Public:  GET /api/posts?slug=xxx     → single post by slug
+// Public:  GET /api/posts?tag=xxx      → posts filtered by tag
+// Admin:   GET /api/posts?all=true     → all posts including drafts
+export async function GET(req: NextRequest) {
+  try {
+    const db = await getDb();
+    const col = db.collection<BlogPost>("posts");
+    const { searchParams } = new URL(req.url);
+
+    const slug = searchParams.get("slug");
+    const tag = searchParams.get("tag");
+    const all = searchParams.get("all"); // admin-only: show drafts
+
+    // ── Single post by slug ──
+    if (slug) {
+      const post = await col.findOne({ slug });
+      if (!post) {
+        return NextResponse.json({ error: "Post not found" }, { status: 404 });
+      }
+      return NextResponse.json(post);
+    }
+
+    // ── List posts ──
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const query: Record<string, any> = {};
+
+    // If not admin request, only return published posts
+    if (all !== "true") {
+      query.published = true;
+    }
+
+    if (tag) {
+      query.tags = tag;
+    }
+
+    const posts = await col
+      .find(query)
+      .sort({ publishedAt: -1, createdAt: -1 })
+      .toArray();
+
+    return NextResponse.json(posts);
+  } catch (err) {
+    console.error("[GET /api/posts]", err);
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 },
+    );
+  }
+}
+
+// ─── POST /api/posts ─────────────────────────────────────────────
+// Admin only. Creates a new post.
 export async function POST(req: NextRequest) {
-  // Simple API key guard — set ADMIN_API_KEY in .env
-  const apiKey = req.headers.get("x-api-key");
-  if (apiKey !== process.env.ADMIN_API_KEY) {
+  if (!isAuthorized(req)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const body: Partial<BlogPost> = await req.json();
-  if (!body.title || !body.slug || !body.content) {
+  try {
+    const body: Partial<BlogPost> = await req.json();
+
+    if (!body.title || !body.content) {
+      return NextResponse.json(
+        { error: "title and content are required" },
+        { status: 400 },
+      );
+    }
+
+    const now = new Date().toISOString();
+    const slug = body.slug?.trim() || generateSlug(body.title);
+
+    const db = await getDb();
+    const col = db.collection<BlogPost>("posts");
+
+    // Check slug uniqueness
+    const existing = await col.findOne({ slug });
+    if (existing) {
+      return NextResponse.json(
+        { error: "A post with this slug already exists" },
+        { status: 409 },
+      );
+    }
+
+    // Strip HTML for excerpt if not provided
+    const plainText = body.content.replace(/<[^>]*>/g, " ").trim();
+
+    const post: BlogPost = {
+      _id: new ObjectId().toString(),
+      title: body.title.trim(),
+      slug,
+      excerpt:
+        body.excerpt?.trim() ||
+        plainText.slice(0, 160) + (plainText.length > 160 ? "..." : ""),
+      content: body.content,
+      coverImage: body.coverImage || undefined,
+      tags: body.tags || [],
+      published: body.published ?? false,
+      publishedAt: body.published ? now : undefined,
+      createdAt: now,
+      updatedAt: now,
+      readTime: calcReadTime(body.content),
+    };
+
+    await col.insertOne(post as never);
+
+    // Revalidate public blog pages so the new post appears immediately
+    if (post.published) {
+      try {
+        const baseUrl =
+          process.env.NEXT_PUBLIC_BASE_URL ||
+          (process.env.VERCEL_URL
+            ? `https://${process.env.VERCEL_URL}`
+            : "http://localhost:3000");
+        await fetch(`${baseUrl}/api/revalidate?path=/blog`, { method: "POST" });
+      } catch {
+        // Non-critical — ISR will revalidate within 60 seconds anyway
+      }
+    }
+
+    return NextResponse.json(post, { status: 201 });
+  } catch (err) {
+    console.error("[POST /api/posts]", err);
     return NextResponse.json(
-      { error: "title, slug, and content are required" },
-      { status: 400 },
+      { error: "Internal server error" },
+      { status: 500 },
     );
   }
-
-  const now = new Date().toISOString();
-  const post: BlogPost = {
-    _id: Date.now().toString(),
-    title: body.title,
-    slug: body.slug,
-    excerpt: body.excerpt || body.content.slice(0, 160) + "...",
-    content: body.content,
-    coverImage: body.coverImage,
-    tags: body.tags || [],
-    published: body.published ?? false,
-    publishedAt: body.published ? now : undefined,
-    createdAt: now,
-    updatedAt: now,
-    readTime: Math.ceil(body.content.split(" ").length / 200),
-  };
-
-  posts.push(post);
-  return NextResponse.json(post, { status: 201 });
 }
 
 // ─── PATCH /api/posts?slug=xxx ────────────────────────────────────
+// Admin only. Updates an existing post.
 export async function PATCH(req: NextRequest) {
-  const apiKey = req.headers.get("x-api-key");
-  if (apiKey !== process.env.ADMIN_API_KEY) {
+  if (!isAuthorized(req)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const slug = new URL(req.url).searchParams.get("slug");
-  if (!slug)
-    return NextResponse.json({ error: "slug required" }, { status: 400 });
+  try {
+    const slug = new URL(req.url).searchParams.get("slug");
+    if (!slug) {
+      return NextResponse.json({ error: "slug is required" }, { status: 400 });
+    }
 
-  const idx = posts.findIndex((p) => p.slug === slug);
-  if (idx === -1)
-    return NextResponse.json({ error: "Post not found" }, { status: 404 });
+    const db = await getDb();
+    const col = db.collection<BlogPost>("posts");
 
-  const updates: Partial<BlogPost> = await req.json();
-  posts[idx] = {
-    ...posts[idx],
-    ...updates,
-    updatedAt: new Date().toISOString(),
-  };
-  return NextResponse.json(posts[idx]);
+    const existing = await col.findOne({ slug });
+    if (!existing) {
+      return NextResponse.json({ error: "Post not found" }, { status: 404 });
+    }
+
+    const updates: Partial<BlogPost> = await req.json();
+    const now = new Date().toISOString();
+
+    // If publishing for the first time, set publishedAt
+    if (updates.published && !existing.published && !existing.publishedAt) {
+      updates.publishedAt = now;
+    }
+
+    // If content changed, recalculate read time
+    if (updates.content) {
+      updates.readTime = calcReadTime(updates.content);
+      // Recalculate excerpt if not explicitly provided
+      if (!updates.excerpt) {
+        const plainText = updates.content.replace(/<[^>]*>/g, " ").trim();
+        updates.excerpt =
+          plainText.slice(0, 160) + (plainText.length > 160 ? "..." : "");
+      }
+    }
+
+    const updated = {
+      ...existing,
+      ...updates,
+      updatedAt: now,
+    };
+
+    await col.replaceOne({ slug }, updated);
+
+    // If publish status changed, revalidate blog pages immediately
+    if (updates.published !== undefined) {
+      try {
+        const baseUrl =
+          process.env.NEXT_PUBLIC_BASE_URL ||
+          (process.env.VERCEL_URL
+            ? `https://${process.env.VERCEL_URL}`
+            : "http://localhost:3000");
+        await fetch(`${baseUrl}/api/revalidate?path=/blog`, { method: "POST" });
+        await fetch(`${baseUrl}/api/revalidate?path=/blog/${slug}`, {
+          method: "POST",
+        });
+      } catch {
+        // Non-critical
+      }
+    }
+
+    return NextResponse.json(updated);
+  } catch (err) {
+    console.error("[PATCH /api/posts]", err);
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 },
+    );
+  }
 }
 
 // ─── DELETE /api/posts?slug=xxx ───────────────────────────────────
+// Admin only. Permanently deletes a post.
 export async function DELETE(req: NextRequest) {
-  const apiKey = req.headers.get("x-api-key");
-  if (apiKey !== process.env.ADMIN_API_KEY) {
+  if (!isAuthorized(req)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const slug = new URL(req.url).searchParams.get("slug");
-  if (!slug)
-    return NextResponse.json({ error: "slug required" }, { status: 400 });
+  try {
+    const slug = new URL(req.url).searchParams.get("slug");
+    if (!slug) {
+      return NextResponse.json({ error: "slug is required" }, { status: 400 });
+    }
 
-  posts = posts.filter((p) => p.slug !== slug);
-  return NextResponse.json({ success: true });
+    const db = await getDb();
+    const col = db.collection<BlogPost>("posts");
+
+    const result = await col.deleteOne({ slug });
+    if (result.deletedCount === 0) {
+      return NextResponse.json({ error: "Post not found" }, { status: 404 });
+    }
+
+    return NextResponse.json({ success: true, slug });
+  } catch (err) {
+    console.error("[DELETE /api/posts]", err);
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 },
+    );
+  }
 }

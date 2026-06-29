@@ -3,8 +3,9 @@ import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Navbar from "./Components/Shared/Navbar";
-import Footer from "./Components/Shared/Footer";
+
 import { Analytics } from "@vercel/analytics/next";
+import Footer from "./Components/Shared/Footer";
 
 const inter = Inter({
   subsets: ["latin"],

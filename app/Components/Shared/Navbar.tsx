@@ -64,7 +64,6 @@ export default function Navbar() {
           justifyContent: "space-between",
         }}
       >
-        {/* Logo */}
         <Link
           href="/"
           style={{
@@ -73,11 +72,11 @@ export default function Navbar() {
             flexShrink: 0,
             textDecoration: "none",
           }}
-          aria-label="Home"
+          aria-label="Eti Studio — Real Estate Website Developer"
         >
           <Image
             src={logo}
-            alt="Eti Studio logo"
+            alt="Eti Studio Real Estate Website Development"
             height={36}
             style={{
               width: "auto",
@@ -89,7 +88,7 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* Desktop Links + CTA */}
+        {/* Desktop */}
         <div
           style={{ display: "flex", alignItems: "center", gap: "2.5rem" }}
           className="hidden-mobile"
@@ -138,8 +137,6 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
-
-          {/* CTA Button */}
           <Link
             href="/#contact"
             style={{
@@ -163,12 +160,11 @@ export default function Navbar() {
               (e.currentTarget.style.background = "var(--fg)")
             }
           >
-            Work With Us
-            <ArrowRight size={12} />
+            Free Site Audit <ArrowRight size={12} />
           </Link>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile toggle */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           style={{
@@ -186,7 +182,7 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile menu */}
       {menuOpen && (
         <div
           style={{
@@ -225,8 +221,6 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
-
-          {/* Mobile CTA */}
           <Link
             href="/#contact"
             onClick={() => setMenuOpen(false)}
@@ -245,19 +239,14 @@ export default function Navbar() {
               borderRadius: "2px",
             }}
           >
-            Work With Us <ArrowRight size={13} />
+            Get Free Site Audit <ArrowRight size={13} />
           </Link>
         </div>
       )}
 
       <style>{`
-        @media (max-width: 768px) {
-          .hidden-mobile { display: none !important; }
-          .show-mobile { display: flex !important; }
-        }
-        @media (min-width: 769px) {
-          .show-mobile { display: none !important; }
-        }
+        @media (max-width: 768px) { .hidden-mobile { display: none !important; } .show-mobile { display: flex !important; } }
+        @media (min-width: 769px) { .show-mobile { display: none !important; } }
       `}</style>
     </nav>
   );

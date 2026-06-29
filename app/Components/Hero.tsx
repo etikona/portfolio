@@ -2,13 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-import { ArrowDown, GitFork, Globe, ArrowRight } from "lucide-react";
+import { ArrowDown, ArrowRight, Globe, Mail } from "lucide-react";
 
 const roles = [
-  "Digital Growth Agency",
-  "Web Development Studio",
-  "AI Automation Partner",
-  "Brand Building Experts",
+  "Real Estate Website Developer",
+  "Property Lead Generation Expert",
+  "Custom Real Estate Web Studio",
+  "Websites That Fill Your Pipeline",
 ];
 
 export default function Hero() {
@@ -27,22 +27,22 @@ export default function Hero() {
   useEffect(() => {
     const currentRole = roles[roleIndex];
     let timeout: NodeJS.Timeout;
-
     if (!isDeleting && displayedRole.length < currentRole.length) {
-      timeout = setTimeout(() => {
-        setDisplayedRole(currentRole.slice(0, displayedRole.length + 1));
-      }, 80);
+      timeout = setTimeout(
+        () => setDisplayedRole(currentRole.slice(0, displayedRole.length + 1)),
+        75,
+      );
     } else if (!isDeleting && displayedRole.length === currentRole.length) {
       timeout = setTimeout(() => setIsDeleting(true), 2200);
     } else if (isDeleting && displayedRole.length > 0) {
-      timeout = setTimeout(() => {
-        setDisplayedRole(displayedRole.slice(0, -1));
-      }, 45);
-    } else if (isDeleting && displayedRole.length === 0) {
+      timeout = setTimeout(
+        () => setDisplayedRole(displayedRole.slice(0, -1)),
+        40,
+      );
+    } else {
       setIsDeleting(false);
       setRoleIndex((i) => (i + 1) % roles.length);
     }
-
     return () => clearTimeout(timeout);
   }, [displayedRole, isDeleting, roleIndex]);
 
@@ -90,7 +90,6 @@ export default function Hero() {
           { opacity: 1, duration: 0.8, ease: "power2.out" },
           "-=0.2",
         );
-
       if (terminalRef.current) {
         gsap.fromTo(
           terminalRef.current,
@@ -114,7 +113,7 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="home"
-      aria-label="Hero"
+      aria-label="Real Estate Website Developer"
       style={{
         minHeight: "100vh",
         display: "flex",
@@ -125,7 +124,6 @@ export default function Hero() {
         overflow: "hidden",
       }}
     >
-      {/* Background grid */}
       <div
         aria-hidden="true"
         style={{
@@ -152,22 +150,20 @@ export default function Hero() {
         }}
         className="hero-grid"
       >
-        {/* Left Column */}
+        {/* Left */}
         <div>
-          {/* Eyebrow — social proof signal */}
           <span
             className="hero-eyebrow tag"
             style={{ marginBottom: "1.5rem", display: "inline-flex" }}
           >
-            Now accepting new clients for Q3 2026
+            Serving Europe, UAE, Australia &amp; New Zealand
           </span>
 
-          {/* H1 — SEO primary keyword in the headline */}
           <h1
             className="hero-name"
             style={{
               fontFamily: "'Playfair Display', serif",
-              fontSize: "clamp(2.4rem, 5vw, 4.2rem)",
+              fontSize: "clamp(2.4rem, 5vw, 4rem)",
               fontWeight: 600,
               lineHeight: 1.1,
               letterSpacing: "-0.03em",
@@ -175,27 +171,26 @@ export default function Hero() {
               marginBottom: "1rem",
             }}
           >
-            We grow businesses
+            Real estate websites
             <br />
+            that{" "}
             <em style={{ color: "var(--accent)", fontStyle: "italic" }}>
-              online.
+              generate leads.
             </em>
           </h1>
 
-          {/* Typewriter — signals service breadth */}
           <div
             className="hero-role-line"
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "0.5rem",
               marginBottom: "1.5rem",
               height: "2rem",
             }}
           >
             <span
               style={{
-                fontSize: "clamp(1rem, 2.5vw, 1.25rem)",
+                fontSize: "clamp(0.95rem, 2.2vw, 1.2rem)",
                 color: "var(--accent)",
                 fontWeight: 500,
                 fontFamily: "'Playfair Display', serif",
@@ -218,7 +213,6 @@ export default function Hero() {
             </span>
           </div>
 
-          {/* Description — pain-point focused, keyword rich */}
           <p
             className="hero-description"
             style={{
@@ -229,13 +223,13 @@ export default function Hero() {
               marginBottom: "2rem",
             }}
           >
-            Eti Studio is a founder-led digital growth agency. We build
-            high-performance web platforms, deploy AI automation that saves your
-            team hours every week, and craft brand strategies that attract
-            premium clients — all under one roof, without the agency bloat.
+            We build custom real estate websites for property agencies, brokers,
+            and developers in Europe, the UAE, Australia, and New Zealand. Every
+            site is engineered for speed, search rankings, and one goal above
+            all else: getting your phone to ring with qualified buyers and
+            sellers.
           </p>
 
-          {/* Primary CTAs */}
           <div
             className="hero-cta"
             style={{
@@ -246,7 +240,6 @@ export default function Hero() {
               marginBottom: "2rem",
             }}
           >
-            {/* Primary CTA — highest intent action */}
             <a
               href="#contact"
               style={{
@@ -269,11 +262,8 @@ export default function Hero() {
                 (e.currentTarget.style.background = "var(--fg)")
               }
             >
-              Get a Free Strategy Call
-              <ArrowRight size={14} />
+              Get a Free Website Audit <ArrowRight size={14} />
             </a>
-
-            {/* Secondary CTA — proof before commitment */}
             <a
               href="#projects"
               style={{
@@ -302,20 +292,20 @@ export default function Hero() {
             </a>
           </div>
 
-          {/* Trust signals — Khalid Farhan-style micro-proof */}
+          {/* Trust bar */}
           <div
             className="hero-trust"
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "1.5rem",
+              gap: "2rem",
               flexWrap: "wrap",
             }}
           >
             {[
-              { number: "15+", label: "Businesses grown" },
-              { number: "3+", label: "Years in production" },
-              { number: "100%", label: "Remote, worldwide" },
+              { number: "15+", label: "Sites launched" },
+              { number: "4", label: "Countries served" },
+              { number: "100%", label: "Lead-focused builds" },
             ].map(({ number, label }) => (
               <div
                 key={label}
@@ -341,25 +331,22 @@ export default function Hero() {
               </div>
             ))}
 
-            {/* Social icons */}
             <div style={{ display: "flex", gap: "0.6rem", marginLeft: "auto" }}>
               {[
-                {
-                  href: "https://github.com/etikona",
-                  icon: GitFork,
-                  label: "GitHub",
-                },
                 {
                   href: "https://linkedin.com/in/eti-kona-paul",
                   icon: Globe,
                   label: "LinkedIn",
                 },
+                {
+                  href: "mailto:etikonapaul@gmail.com",
+                  icon: Mail,
+                  label: "Email",
+                },
               ].map(({ href, icon: Icon, label }) => (
                 <a
-                  key={href}
+                  key={label}
                   href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   aria-label={label}
                   style={{
                     width: "36px",
@@ -388,7 +375,7 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right Column — Terminal Card */}
+        {/* Right — Terminal */}
         <div
           ref={terminalRef}
           style={{
@@ -400,7 +387,6 @@ export default function Hero() {
           }}
           className="hero-terminal"
         >
-          {/* Terminal header */}
           <div
             style={{
               padding: "0.75rem 1rem",
@@ -445,11 +431,9 @@ export default function Hero() {
                 fontFamily: "monospace",
               }}
             >
-              eti-studio.ts
+              your-agency.ts
             </span>
           </div>
-
-          {/* Terminal body */}
           <div
             style={{
               padding: "1.5rem",
@@ -458,82 +442,55 @@ export default function Hero() {
               lineHeight: 1.9,
             }}
           >
-            <div style={{ color: "#6B7280" }}>
-              {"// Eti Studio — Digital Growth Agency"}
-            </div>
-            <div>
-              <span style={{ color: "#C8B89A" }}>const</span>{" "}
-              <span style={{ color: "#E5E7EB" }}>studio</span>{" "}
-              <span style={{ color: "#C8B89A" }}>=</span>{" "}
-              <span style={{ color: "#9CA3AF" }}>{"{"}</span>
-            </div>
-            <div style={{ paddingLeft: "1.5rem" }}>
-              <span style={{ color: "#6EE7B7" }}>services</span>
-              <span style={{ color: "#9CA3AF" }}>:</span>{" "}
-              <span style={{ color: "#9CA3AF" }}>[</span>
-              <span style={{ color: "#FCA5A5" }}>&quot;Web Dev&quot;</span>
-              <span style={{ color: "#9CA3AF" }}>,</span>{" "}
-              <span style={{ color: "#FCA5A5" }}>
-                &quot;AI Automation&quot;
-              </span>
-              <span style={{ color: "#9CA3AF" }}>,</span>{" "}
-              <span style={{ color: "#FCA5A5" }}>
-                &quot;Brand Building&quot;
-              </span>
-              <span style={{ color: "#9CA3AF" }}>]</span>
-              <span style={{ color: "#9CA3AF" }}>,</span>
-            </div>
-            <div style={{ paddingLeft: "1.5rem" }}>
-              <span style={{ color: "#6EE7B7" }}>clients</span>
-              <span style={{ color: "#9CA3AF" }}>:</span>{" "}
-              <span style={{ color: "#FCA5A5" }}>
-                &quot;Founders &amp; Growing Businesses&quot;
-              </span>
-              <span style={{ color: "#9CA3AF" }}>,</span>
-            </div>
-            <div style={{ paddingLeft: "1.5rem" }}>
-              <span style={{ color: "#6EE7B7" }}>focus</span>
-              <span style={{ color: "#9CA3AF" }}>:</span>{" "}
-              <span style={{ color: "#FCA5A5" }}>
-                &quot;Revenue, not just deliverables&quot;
-              </span>
-              <span style={{ color: "#9CA3AF" }}>,</span>
-            </div>
-            <div style={{ paddingLeft: "1.5rem" }}>
-              <span style={{ color: "#6EE7B7" }}>status</span>
-              <span style={{ color: "#9CA3AF" }}>:</span>{" "}
-              <span style={{ color: "#C8B89A" }}>true</span>
-              <span style={{ color: "#9CA3AF" }}>,</span>{" "}
-              <span style={{ color: "#6B7280" }}>
-                {"// accepting new clients"}
-              </span>
-            </div>
-            <div style={{ color: "#9CA3AF" }}>{"};"}</div>
-            <br />
-            <div style={{ color: "#6B7280" }}>
-              {"// What we help you solve"}
-            </div>
+            <div style={{ color: "#6B7280" }}>{"// Before Eti Studio"}</div>
             {[
-              "❌ Slow website losing you customers",
-              "❌ Manual tasks eating your team's hours",
-              "❌ No brand that commands premium pricing",
-              "✅ Eti Studio fixes all three.",
-            ].map((line, i) => (
-              <div
-                key={i}
-                style={{
-                  color: line.startsWith("✅") ? "#6EE7B7" : "#9CA3AF",
-                  fontSize: "0.78rem",
-                }}
-              >
-                {line}
+              {
+                key: "website",
+                val: '"Outdated, slow, no enquiries"',
+                color: "#FCA5A5",
+              },
+              { key: "leads", val: '"From referrals only"', color: "#FCA5A5" },
+              { key: "rankOnGoogle", val: "false", color: "#C8B89A" },
+              { key: "onlinePipeline", val: "null", color: "#C8B89A" },
+            ].map(({ key, val, color }) => (
+              <div key={key} style={{ paddingLeft: "1.5rem" }}>
+                <span style={{ color: "#6EE7B7" }}>{key}</span>
+                <span style={{ color: "#9CA3AF" }}>: </span>
+                <span style={{ color }}>{val}</span>
+                <span style={{ color: "#9CA3AF" }}>,</span>
+              </div>
+            ))}
+            <br />
+            <div style={{ color: "#6B7280" }}>{"// After Eti Studio"}</div>
+            {[
+              {
+                key: "website",
+                val: '"Fast, ranked, converting"',
+                color: "#6EE7B7",
+              },
+              {
+                key: "leads",
+                val: '"Qualified inbound, daily"',
+                color: "#6EE7B7",
+              },
+              { key: "rankOnGoogle", val: "true", color: "#C8B89A" },
+              {
+                key: "onlinePipeline",
+                val: '"Running 24/7"',
+                color: "#6EE7B7",
+              },
+            ].map(({ key, val, color }) => (
+              <div key={key} style={{ paddingLeft: "1.5rem" }}>
+                <span style={{ color: "#6EE7B7" }}>{key}</span>
+                <span style={{ color: "#9CA3AF" }}>: </span>
+                <span style={{ color }}>{val}</span>
+                <span style={{ color: "#9CA3AF" }}>,</span>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <div
         className="hero-scroll"
         style={{
@@ -567,10 +524,7 @@ export default function Hero() {
       </div>
 
       <style>{`
-        @keyframes bounce {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(5px); }
-        }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
         @media (max-width: 768px) {
           .hero-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
           .hero-terminal { display: none; }

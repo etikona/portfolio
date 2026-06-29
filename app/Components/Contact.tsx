@@ -173,8 +173,8 @@ export default function Contact() {
                 {
                   icon: Mail,
                   label: "Email",
-                  value: "etikonapaul@email.com",
-                  href: "mailto:your@email.com",
+                  value: "etikonapal@gmail.com",
+                  href: "mailto:your@gmail.com",
                 },
                 {
                   icon: MapPin,

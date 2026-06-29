@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Globe, X, ArrowRight } from "lucide-react";
+import { Globe, X, Mail, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import logo from "../../assets/logo.png";
 
@@ -12,43 +12,36 @@ const socialLinks = [
     label: "LinkedIn",
   },
   { href: "https://x.com/etikona", icon: X, label: "X / Twitter" },
+  { href: "mailto:etikonapal@gmail.com", icon: Mail, label: "Email" },
 ];
 
 const footerNav = [
   {
     heading: "Studio",
     links: [
-      { href: "/#about", label: "About" },
+      { href: "/#about", label: "About Us" },
       { href: "/#experience", label: "Track Record" },
       { href: "/#projects", label: "Case Studies" },
       { href: "/#faq", label: "FAQ" },
+      { href: "/blog", label: "Blog" },
     ],
   },
   {
     heading: "Services",
     links: [
-      { href: "/#services", label: "Web Development" },
-      { href: "/#services", label: "AI Automation" },
-      { href: "/#services", label: "Brand Building" },
-      { href: "/#services", label: "Growth & Performance" },
+      { href: "/#services", label: "Real Estate Website Development" },
+      { href: "/#services", label: "Property Lead Generation" },
+      { href: "/#services", label: "Real Estate SEO" },
+      { href: "/#services", label: "Conversion Optimisation" },
     ],
   },
   {
-    heading: "Connect",
+    heading: "Markets We Serve",
     links: [
-      { href: "/blog", label: "Blog" },
-      { href: "/#contact", label: "Contact" },
-      {
-        href: "https://linkedin.com/in/eti-kona-paul",
-        label: "LinkedIn",
-        external: true,
-      },
-      {
-        href: "mailto:etikonapaul@gmail.com",
-        label: "Email Us",
-        value: "etikonapaul@email.com",
-        external: true,
-      },
+      { href: "/#contact", label: "Europe" },
+      { href: "/#contact", label: "United Arab Emirates" },
+      { href: "/#contact", label: "Australia" },
+      { href: "/#contact", label: "New Zealand" },
     ],
   },
 ];
@@ -58,10 +51,7 @@ export default function Footer() {
 
   return (
     <footer
-      style={{
-        borderTop: "1px solid var(--border)",
-        background: "var(--bg)",
-      }}
+      style={{ borderTop: "1px solid var(--border)", background: "var(--bg)" }}
     >
       {/* Top CTA strip */}
       <div
@@ -93,7 +83,7 @@ export default function Footer() {
                 marginBottom: "0.5rem",
               }}
             >
-              Ready to grow?
+              Ready to own your leads?
             </p>
             <h3
               style={{
@@ -104,9 +94,9 @@ export default function Footer() {
                 lineHeight: 1.2,
               }}
             >
-              Let's build something that works
+              Stop paying portals for leads
               <br />
-              for your business.
+              that should be yours for free.
             </h3>
           </div>
           <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
@@ -132,10 +122,10 @@ export default function Footer() {
                 (e.currentTarget.style.background = "var(--fg)")
               }
             >
-              Book Free Strategy Call <ArrowRight size={13} />
+              Get Free Website Audit <ArrowRight size={13} />
             </Link>
             <Link
-              href="/#services"
+              href="/#projects"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -158,13 +148,13 @@ export default function Footer() {
                 (e.currentTarget.style.borderColor = "var(--border)")
               }
             >
-              Explore Services
+              See Our Work
             </Link>
           </div>
         </div>
       </div>
 
-      {/* Main footer body */}
+      {/* Main footer */}
       <div
         style={{
           maxWidth: "1200px",
@@ -181,7 +171,7 @@ export default function Footer() {
           }}
           className="footer-grid"
         >
-          {/* Brand column */}
+          {/* Brand */}
           <div>
             <Link
               href="/"
@@ -210,15 +200,25 @@ export default function Footer() {
                 fontSize: "0.85rem",
                 color: "var(--muted)",
                 lineHeight: 1.8,
-                marginBottom: "1.5rem",
+                marginBottom: "0.75rem",
                 maxWidth: "260px",
               }}
             >
-              A founder-led digital growth agency building web platforms, AI
-              automation systems, and brands that attract premium clients.
+              Specialist real estate website development studio. We build custom
+              property websites that generate qualified leads for agencies in
+              Europe, UAE, Australia, and New Zealand.
+            </p>
+            <p
+              style={{
+                fontSize: "0.78rem",
+                color: "var(--muted)",
+                marginBottom: "1.5rem",
+                opacity: 0.7,
+              }}
+            >
+              Based in Dhaka, Bangladesh &mdash; Serving clients worldwide.
             </p>
 
-            {/* Social icons */}
             <div
               style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}
             >
@@ -280,77 +280,25 @@ export default function Footer() {
                   margin: 0,
                 }}
               >
-                {links.map(({ href, label, external, value }) => (
+                {links.map(({ href, label }) => (
                   <li key={label}>
-                    {external ? (
-                      <a
-                        href={href}
-                        target={
-                          href.startsWith("mailto") ? undefined : "_blank"
-                        }
-                        rel="noopener noreferrer"
-                        style={{
-                          fontSize: "0.85rem",
-                          color: "var(--muted)",
-                          textDecoration: "none",
-                          transition: "color 0.2s ease",
-                        }}
-                        onMouseEnter={(e) =>
-                          (e.currentTarget.style.color = "var(--fg)")
-                        }
-                        onMouseLeave={(e) =>
-                          (e.currentTarget.style.color = "var(--muted)")
-                        }
-                      >
-                        {label}
-
-                        {/* ✅ SHOW EMAIL VALUE IN UI */}
-                        {value && (
-                          <div
-                            style={{
-                              fontSize: "0.75rem",
-                              marginTop: "0.25rem",
-                              color: "var(--muted)",
-                              opacity: 0.8,
-                            }}
-                          >
-                            {value}
-                          </div>
-                        )}
-                      </a>
-                    ) : (
-                      <Link
-                        href={href}
-                        style={{
-                          fontSize: "0.85rem",
-                          color: "var(--muted)",
-                          textDecoration: "none",
-                          transition: "color 0.2s ease",
-                        }}
-                        onMouseEnter={(e) =>
-                          (e.currentTarget.style.color = "var(--fg)")
-                        }
-                        onMouseLeave={(e) =>
-                          (e.currentTarget.style.color = "var(--muted)")
-                        }
-                      >
-                        {label}
-
-                        {/* (optional safety for Link-based items) */}
-                        {value && (
-                          <div
-                            style={{
-                              fontSize: "0.75rem",
-                              marginTop: "0.25rem",
-                              color: "var(--muted)",
-                              opacity: 0.8,
-                            }}
-                          >
-                            {value}
-                          </div>
-                        )}
-                      </Link>
-                    )}
+                    <Link
+                      href={href}
+                      style={{
+                        fontSize: "0.85rem",
+                        color: "var(--muted)",
+                        textDecoration: "none",
+                        transition: "color 0.2s ease",
+                      }}
+                      onMouseEnter={(e) =>
+                        (e.currentTarget.style.color = "var(--fg)")
+                      }
+                      onMouseLeave={(e) =>
+                        (e.currentTarget.style.color = "var(--muted)")
+                      }
+                    >
+                      {label}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -374,18 +322,15 @@ export default function Footer() {
             &copy; {year} Eti Studio. All rights reserved.
           </p>
           <p style={{ fontSize: "0.78rem", color: "var(--muted)" }}>
-            Dhaka, Bangladesh &mdash; Serving clients worldwide.
+            Real estate website development &mdash; Europe &middot; UAE &middot;
+            Australia &middot; New Zealand
           </p>
         </div>
       </div>
 
       <style>{`
-        @media (max-width: 900px) {
-          .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 2.5rem !important; }
-        }
-        @media (max-width: 560px) {
-          .footer-grid { grid-template-columns: 1fr !important; }
-        }
+        @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 2.5rem !important; } }
+        @media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr !important; } }
       `}</style>
     </footer>
   );

@@ -1,4 +1,3 @@
-import Footer from "@/app/Components/Shared/Footer";
 import Navbar from "@/app/Components/Shared/Navbar";
 import { BlogPost } from "@/app/Types";
 import type { Metadata } from "next";
@@ -16,9 +15,11 @@ async function getPost(slug: string): Promise<BlogPost | null> {
       (process.env.VERCEL_URL
         ? `https://${process.env.VERCEL_URL}`
         : "http://localhost:3000");
+
     const res = await fetch(`${baseUrl}/api/posts?slug=${slug}`, {
-      next: { revalidate: 60 },
+      cache: "no-store",
     });
+
     if (!res.ok) return null;
     return res.json();
   } catch {
@@ -33,9 +34,11 @@ async function getAllPosts(): Promise<BlogPost[]> {
       (process.env.VERCEL_URL
         ? `https://${process.env.VERCEL_URL}`
         : "http://localhost:3000");
+
     const res = await fetch(`${baseUrl}/api/posts`, {
-      next: { revalidate: 60 },
+      cache: "no-store",
     });
+
     if (!res.ok) return [];
     return res.json();
   } catch {
@@ -49,7 +52,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!post) return { title: "Post not found" };
 
   return {
-    title: post.title,
+    title: `${post.title} | Eti Studio Blog`,
     description: post.excerpt,
     openGraph: {
       title: post.title,
@@ -57,11 +60,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "article",
       publishedTime: post.publishedAt,
       tags: post.tags,
+      images: post.coverImage ? [{ url: post.coverImage }] : [],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.excerpt,
+      images: post.coverImage ? [post.coverImage] : [],
     },
   };
 }
@@ -69,6 +74,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
   const [post, allPosts] = await Promise.all([getPost(slug), getAllPosts()]);
+
   if (!post) notFound();
 
   const related = allPosts
