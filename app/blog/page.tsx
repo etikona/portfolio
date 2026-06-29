@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { BlogPost } from "../Types";
 import Navbar from "../Components/Shared/Navbar";
 import BlogClient from "./BlogClient";
+import { getDb } from "../lib/mongodb";
+
+export const dynamic = "force-dynamic"; // never cache this page
 
 export const metadata: Metadata = {
   title: "Blog | Eti Studio",
@@ -23,19 +26,17 @@ export const metadata: Metadata = {
 
 async function getPosts(): Promise<BlogPost[]> {
   try {
-    const baseUrl =
-      process.env.NEXT_PUBLIC_BASE_URL ||
-      (process.env.VERCEL_URL
-        ? `https://${process.env.VERCEL_URL}`
-        : "http://localhost:3000");
+    const db = await getDb();
+    const posts = await db
+      .collection<BlogPost>("posts")
+      .find({ published: true })
+      .sort({ publishedAt: -1 })
+      .toArray();
 
-    const res = await fetch(`${baseUrl}/api/posts`, {
-      cache: "no-store",
-    });
-
-    if (!res.ok) return [];
-    return res.json();
-  } catch {
+    // MongoDB returns _id as ObjectId — serialize to plain object for client
+    return JSON.parse(JSON.stringify(posts));
+  } catch (err) {
+    console.error("[blog/page] Failed to fetch posts:", err);
     return [];
   }
 }

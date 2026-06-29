@@ -1,8 +1,11 @@
 import Navbar from "@/app/Components/Shared/Navbar";
 import { BlogPost } from "@/app/Types";
+import { getDb } from "@/app/lib/mongodb";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import BlogPostClient from "./BlogPostClient";
+
+export const dynamic = "force-dynamic";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -10,18 +13,13 @@ interface Props {
 
 async function getPost(slug: string): Promise<BlogPost | null> {
   try {
-    const baseUrl =
-      process.env.NEXT_PUBLIC_BASE_URL ||
-      (process.env.VERCEL_URL
-        ? `https://${process.env.VERCEL_URL}`
-        : "http://localhost:3000");
+    const db = await getDb();
+    const post = await db
+      .collection<BlogPost>("posts")
+      .findOne({ slug, published: true });
 
-    const res = await fetch(`${baseUrl}/api/posts?slug=${slug}`, {
-      cache: "no-store",
-    });
-
-    if (!res.ok) return null;
-    return res.json();
+    if (!post) return null;
+    return JSON.parse(JSON.stringify(post));
   } catch {
     return null;
   }
@@ -29,18 +27,14 @@ async function getPost(slug: string): Promise<BlogPost | null> {
 
 async function getAllPosts(): Promise<BlogPost[]> {
   try {
-    const baseUrl =
-      process.env.NEXT_PUBLIC_BASE_URL ||
-      (process.env.VERCEL_URL
-        ? `https://${process.env.VERCEL_URL}`
-        : "http://localhost:3000");
+    const db = await getDb();
+    const posts = await db
+      .collection<BlogPost>("posts")
+      .find({ published: true })
+      .sort({ publishedAt: -1 })
+      .toArray();
 
-    const res = await fetch(`${baseUrl}/api/posts`, {
-      cache: "no-store",
-    });
-
-    if (!res.ok) return [];
-    return res.json();
+    return JSON.parse(JSON.stringify(posts));
   } catch {
     return [];
   }
