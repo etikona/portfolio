@@ -801,8 +801,7 @@ export default function BlogClient({ posts }: Props) {
                     marginBottom: "1.1rem",
                   }}
                 >
-                  Full-stack developer writing about Node.js, Next.js, and
-                  building real-world web products.
+                  Real estate Website
                 </p>
                 <Link
                   href="/#about"
