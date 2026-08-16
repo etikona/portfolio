@@ -20,7 +20,7 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.etikonapaul.com/"),
   title: {
-    default: "Eti — Full-Stack Developer",
+    default: "Eti — Studio",
     template: "%s | Eti",
   },
   verification: {
@@ -44,24 +44,22 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://www.etikonapaul.com/",
-    siteName: "Eti — Full-Stack Developer",
-    title: "Eti — Full-Stack Developer",
-    description:
-      "Full-Stack Developer specializing in Node.js, Next.js, and building scalable web applications.",
+    siteName: "Eti Studio",
+    title: "Eti — Studio",
+    description: "Websites that turn visitors into customers.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Eti — Full-Stack Developer",
+        alt: "Eti — Studio",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Eti — Full-Stack Developer",
-    description:
-      "Full-Stack Developer specializing in Node.js, Next.js, and building scalable web applications.",
+    title: "Eti — Studio",
+    description: "Websites that turn visitors into customers.",
     images: ["/og-image.png"],
   },
   robots: {

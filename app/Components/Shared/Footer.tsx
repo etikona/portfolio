@@ -1,49 +1,57 @@
 "use client";
 
 import Link from "next/link";
-import { Globe, X, Mail, ArrowRight } from "lucide-react";
+import { X, Mail, Globe } from "lucide-react";
 import Image from "next/image";
 import logo from "../../assets/logo.png";
 
+const footerLinks = {
+  Services: [
+    {
+      label: "Website Design & Development",
+      href: "/services/website-design-development",
+    },
+    { label: "Website Redesign", href: "/services/website-redesign" },
+    { label: "SEO Foundation", href: "/services/seo-foundation" },
+    {
+      label: "Custom Web Applications",
+      href: "/services/custom-web-applications",
+    },
+    {
+      label: "Lead Generation & Conversion",
+      href: "/services/lead-generation-conversion",
+    },
+    { label: "CRM & Automation", href: "/services/crm-automation" },
+  ],
+  Industries: [
+    { label: "Real Estate", href: "/industries/real-estate" },
+    {
+      label: "Construction & Contractors",
+      href: "/industries/construction-contractors",
+    },
+    { label: "Law Firms", href: "/industries/law-firms" },
+    {
+      label: "Professional Services",
+      href: "/industries/professional-services",
+    },
+  ],
+  Company: [
+    { label: "About", href: "/about" },
+    { label: "Blog", href: "/blog" },
+    { label: "Our Work", href: "/work" },
+    { label: "Contact", href: "/contact" },
+  ],
+};
+
 const socialLinks = [
+  { href: "https://github.com/yourusername", icon: Globe, label: "GitHub" },
   {
-    href: "https://linkedin.com/in/eti-kona-paul",
+    href: "https://linkedin.com/in/yourusername",
     icon: Globe,
     label: "LinkedIn",
   },
-  { href: "https://x.com/etikona", icon: X, label: "X / Twitter" },
-  { href: "mailto:etikonapal@gmail.com", icon: Mail, label: "Email" },
-];
-
-const footerNav = [
-  {
-    heading: "Studio",
-    links: [
-      { href: "/#about", label: "About Us" },
-      { href: "/#experience", label: "Track Record" },
-      { href: "/#projects", label: "Case Studies" },
-      { href: "/#faq", label: "FAQ" },
-      { href: "/blog", label: "Blog" },
-    ],
-  },
-  {
-    heading: "Services",
-    links: [
-      { href: "/#services", label: "Real Estate Website Development" },
-      { href: "/#services", label: "Property Lead Generation" },
-      { href: "/#services", label: "Real Estate SEO" },
-      { href: "/#services", label: "Conversion Optimisation" },
-    ],
-  },
-  {
-    heading: "Markets We Serve",
-    links: [
-      { href: "/#contact", label: "Europe" },
-      { href: "/#contact", label: "United Arab Emirates" },
-      { href: "/#contact", label: "Australia" },
-      { href: "/#contact", label: "New Zealand" },
-    ],
-  },
+  { href: "https://x.com/yourusername", icon: X, label: "X" },
+  { href: "mailto:your@email.com", icon: Mail, label: "Email" },
 ];
 
 export default function Footer() {
@@ -53,283 +61,183 @@ export default function Footer() {
     <footer
       style={{ borderTop: "1px solid var(--border)", background: "var(--bg)" }}
     >
-      {/* Top CTA strip */}
       <div
         style={{
-          borderBottom: "1px solid var(--border)",
-          padding: "3.5rem 2rem",
-          background: "var(--surface)",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
-            gap: "2rem",
-          }}
-        >
-          <div>
-            <p
-              style={{
-                fontSize: "0.72rem",
-                fontWeight: 700,
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                color: "var(--muted)",
-                marginBottom: "0.5rem",
-              }}
-            >
-              Ready to own your leads?
-            </p>
-            <h3
-              style={{
-                fontFamily: "'Playfair Display', serif",
-                fontSize: "clamp(1.4rem, 3vw, 2rem)",
-                fontWeight: 600,
-                color: "var(--fg)",
-                lineHeight: 1.2,
-              }}
-            >
-              Stop paying portals for leads
-              <br />
-              that should be yours for free.
-            </h3>
-          </div>
-          <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-            <Link
-              href="/#contact"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.5rem",
-                padding: "0.85rem 1.75rem",
-                background: "var(--fg)",
-                color: "var(--bg)",
-                textDecoration: "none",
-                fontSize: "0.82rem",
-                fontWeight: 600,
-                letterSpacing: "0.05em",
-                textTransform: "uppercase",
-                borderRadius: "2px",
-                transition: "background 0.2s ease",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = "#333")}
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.background = "var(--fg)")
-              }
-            >
-              Get Free Website Audit <ArrowRight size={13} />
-            </Link>
-            <Link
-              href="/#projects"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                padding: "0.85rem 1.75rem",
-                border: "1px solid var(--border)",
-                background: "transparent",
-                color: "var(--fg)",
-                textDecoration: "none",
-                fontSize: "0.82rem",
-                fontWeight: 600,
-                letterSpacing: "0.05em",
-                textTransform: "uppercase",
-                borderRadius: "2px",
-                transition: "border-color 0.2s ease",
-              }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.borderColor = "var(--fg)")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.borderColor = "var(--border)")
-              }
-            >
-              See Our Work
-            </Link>
-          </div>
-        </div>
-      </div>
-
-      {/* Main footer */}
-      <div
-        style={{
-          maxWidth: "1200px",
+          maxWidth: "1280px",
           margin: "0 auto",
           padding: "4rem 2rem 3rem",
+          display: "grid",
+          gridTemplateColumns: "1.4fr repeat(3, 1fr)",
+          gap: "3rem",
         }}
+        className="footer-grid"
       >
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1.6fr 1fr 1fr 1fr",
-            gap: "3rem",
-            marginBottom: "3.5rem",
-          }}
-          className="footer-grid"
-        >
-          {/* Brand */}
-          <div>
-            <Link
-              href="/"
+        {/* Brand */}
+        <div>
+          <Link
+            href="/"
+            aria-label="Home"
+            style={{
+              display: "inline-flex",
+              marginBottom: "1.25rem",
+              textDecoration: "none",
+            }}
+          >
+            <Image
+              src={logo}
+              alt="Logo"
+              height={32}
               style={{
-                display: "inline-block",
-                marginBottom: "1.25rem",
-                textDecoration: "none",
+                width: "auto",
+                height: "32px",
+                objectFit: "contain",
+                display: "block",
               }}
-              aria-label="Eti Studio Home"
-            >
-              <Image
-                src={logo}
-                alt="Eti Studio logo"
-                height={34}
+            />
+          </Link>
+          <p
+            style={{
+              fontSize: "0.85rem",
+              color: "var(--muted)",
+              lineHeight: 1.8,
+              maxWidth: "280px",
+              marginBottom: "1.5rem",
+            }}
+          >
+            Conversion-focused websites for real estate, construction, law, and
+            professional services. Based in Dhaka, Bangladesh — working
+            worldwide.
+          </p>
+          <div style={{ display: "flex", gap: "0.75rem" }}>
+            {socialLinks.map(({ href, icon: Icon, label }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
                 style={{
-                  width: "auto",
+                  width: "34px",
                   height: "34px",
-                  objectFit: "contain",
-                  display: "block",
-                }}
-                priority
-              />
-            </Link>
-            <p
-              style={{
-                fontSize: "0.85rem",
-                color: "var(--muted)",
-                lineHeight: 1.8,
-                marginBottom: "0.75rem",
-                maxWidth: "260px",
-              }}
-            >
-              Specialist real estate website development studio. We build custom
-              property websites that generate qualified leads for agencies in
-              Europe, UAE, Australia, and New Zealand.
-            </p>
-            <p
-              style={{
-                fontSize: "0.78rem",
-                color: "var(--muted)",
-                marginBottom: "1.5rem",
-                opacity: 0.7,
-              }}
-            >
-              Based in Dhaka, Bangladesh &mdash; Serving clients worldwide.
-            </p>
-
-            <div
-              style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}
-            >
-              {socialLinks.map(({ href, icon: Icon, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target={href.startsWith("mailto") ? undefined : "_blank"}
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  style={{
-                    width: "34px",
-                    height: "34px",
-                    border: "1px solid var(--border)",
-                    borderRadius: "2px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: "var(--muted)",
-                    transition: "color 0.2s ease, border-color 0.2s ease",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.color = "var(--fg)";
-                    e.currentTarget.style.borderColor = "var(--fg)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.color = "var(--muted)";
-                    e.currentTarget.style.borderColor = "var(--border)";
-                  }}
-                >
-                  <Icon size={15} />
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Nav columns */}
-          {footerNav.map(({ heading, links }) => (
-            <div key={heading}>
-              <p
-                style={{
-                  fontSize: "0.7rem",
-                  fontWeight: 700,
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                  color: "var(--fg)",
-                  marginBottom: "1.25rem",
-                }}
-              >
-                {heading}
-              </p>
-              <ul
-                style={{
-                  listStyle: "none",
+                  border: "1px solid var(--border)",
+                  borderRadius: "4px",
                   display: "flex",
-                  flexDirection: "column",
-                  gap: "0.85rem",
-                  padding: 0,
-                  margin: 0,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "var(--muted)",
+                  transition: "color 0.2s ease, border-color 0.2s ease",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.color =
+                    "var(--fg)";
+                  (e.currentTarget as HTMLAnchorElement).style.borderColor =
+                    "var(--fg)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.color =
+                    "var(--muted)";
+                  (e.currentTarget as HTMLAnchorElement).style.borderColor =
+                    "var(--border)";
                 }}
               >
-                {links.map(({ href, label }) => (
-                  <li key={label}>
-                    <Link
-                      href={href}
-                      style={{
-                        fontSize: "0.85rem",
-                        color: "var(--muted)",
-                        textDecoration: "none",
-                        transition: "color 0.2s ease",
-                      }}
-                      onMouseEnter={(e) =>
-                        (e.currentTarget.style.color = "var(--fg)")
-                      }
-                      onMouseLeave={(e) =>
-                        (e.currentTarget.style.color = "var(--muted)")
-                      }
-                    >
-                      {label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+                <Icon size={14} />
+              </a>
+            ))}
+          </div>
         </div>
 
-        {/* Bottom bar */}
+        {Object.entries(footerLinks).map(([category, links]) => (
+          <div key={category}>
+            <h3
+              style={{
+                fontSize: "0.7rem",
+                fontWeight: 700,
+                letterSpacing: "0.09em",
+                textTransform: "uppercase",
+                color: "var(--fg)",
+                marginBottom: "1.25rem",
+              }}
+            >
+              {category}
+            </h3>
+            <ul
+              style={{
+                listStyle: "none",
+                display: "flex",
+                flexDirection: "column",
+                gap: "0.6rem",
+              }}
+            >
+              {links.map(({ label, href }) => (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    style={{
+                      fontSize: "0.83rem",
+                      color: "var(--muted)",
+                      textDecoration: "none",
+                      transition: "color 0.2s ease",
+                    }}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.color = "var(--fg)")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.color = "var(--muted)")
+                    }
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <div style={{ borderTop: "1px solid var(--border)" }}>
         <div
           style={{
-            borderTop: "1px solid var(--border)",
-            paddingTop: "1.75rem",
+            maxWidth: "1280px",
+            margin: "0 auto",
+            padding: "1.25rem 2rem",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
             flexWrap: "wrap",
-            gap: "1rem",
+            gap: "0.75rem",
           }}
         >
           <p style={{ fontSize: "0.78rem", color: "var(--muted)" }}>
             &copy; {year} Eti Studio. All rights reserved.
           </p>
-          <p style={{ fontSize: "0.78rem", color: "var(--muted)" }}>
-            Real estate website development &mdash; Europe &middot; UAE &middot;
-            Australia &middot; New Zealand
-          </p>
+          <Link
+            href="/contact"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.35rem",
+              padding: "0.45rem 1rem",
+              background: "var(--fg)",
+              color: "var(--bg)",
+              fontSize: "0.75rem",
+              fontWeight: 600,
+              letterSpacing: "0.04em",
+              textDecoration: "none",
+              borderRadius: "3px",
+              transition: "background 0.2s ease",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.background = "#333")}
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.background = "var(--fg)")
+            }
+          >
+            Get a Free Website Audit
+          </Link>
         </div>
       </div>
 
       <style>{`
-        @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 2.5rem !important; } }
+        @media (max-width: 960px) { .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 2.5rem !important; } }
         @media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr !important; } }
       `}</style>
     </footer>
