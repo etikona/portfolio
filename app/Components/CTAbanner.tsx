@@ -28,8 +28,6 @@ export default function CTAbanner({
   description = "Get a free website audit and see exactly what's costing you leads — no obligation, no sales pressure.",
   primaryLabel = "Get a Free Website Audit",
   primaryHref = "/contact",
-  secondaryLabel = "See Our Work",
-  secondaryHref = "/work",
 }: Props) {
   const ref = useRef<HTMLElement>(null);
 
@@ -94,12 +92,6 @@ export default function CTAbanner({
                 size={14}
                 className="transition-transform duration-300 group-hover:translate-x-0.5"
               />
-            </Link>
-            <Link
-              href={secondaryHref}
-              className="inline-flex items-center gap-2 rounded-[3px] border border-white/15 px-7 py-3.5 text-sm font-semibold tracking-wider text-bg transition-all duration-300 hover:border-white/40 hover:bg-white/5"
-            >
-              {secondaryLabel}
             </Link>
           </div>
 
