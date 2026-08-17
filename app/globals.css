@@ -2,12 +2,14 @@
 
 :root {
   --bg: #f8f8f6;
-  --fg: #0e0e0d;
+  /* --fg: #0e0e0d; */
+  --fg: #003d2b;
   --accent: #8b5e3c;
   --muted: #383737;
   --surface: #f0efe9;
   --border: #e2e0d8;
   --dark-bg: #0e0e0d;
+  /* --dark-bg: #003d2b; */
   --dark-surface: #1a1a18;
   --dark-border: #2a2a28;
 }
